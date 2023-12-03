@@ -34,7 +34,7 @@ import org.junit.Test;
  69.x 的平方根(opens new window)
  367.有效的完全平方数(opens new window)
  #其他语言版本
- 
+
  */
 public class LeetCode704 {
 
