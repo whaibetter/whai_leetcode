@@ -26,6 +26,15 @@ import org.junit.Test;
  你可以假设 nums 中的所有元素是不重复的。
  n 将在 [1, 10000]之间。
  nums 的每个元素都将在 [-9999, 9999]之间。
+
+
+ 相关题目推荐
+ 35.搜索插入位置(opens new window)
+ 34.在排序数组中查找元素的第一个和最后一个位置(opens new window)
+ 69.x 的平方根(opens new window)
+ 367.有效的完全平方数(opens new window)
+ #其他语言版本
+ 
  */
 public class LeetCode704 {
 

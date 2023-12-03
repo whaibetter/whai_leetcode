@@ -46,6 +46,14 @@ import org.junit.Test;
  * 0 <= nums.length <= 100
  * 0 <= nums[i] <= 50
  * 0 <= val <= 100
+ *
+ * 相关题目推荐
+ * 26.删除排序数组中的重复项(opens new window)
+ * 283.移动零(opens new window)
+ * 844.比较含退格的字符串(opens new window)
+ * 977.有序数组的平方(opens new window)
+ * #其他语言版本
+ *
  */
 public class LeetCode27 {
 
