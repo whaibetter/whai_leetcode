@@ -79,9 +79,6 @@ public class LeetCode27 {
             }
         }
 
-        for (int num : nums) {
-            System.out.println(num);
-        }
         return slowIndex;
     }
     @Test
