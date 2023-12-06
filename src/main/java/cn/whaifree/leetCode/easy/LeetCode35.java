@@ -44,7 +44,8 @@ public class LeetCode35 {
         int right = nums.length - 1;
         // 当左指针小于等于右指针时，进行循环
         while (left <= right) {
-            // 计算中间位置的索引
+            // 计算中间位置的索引 右边距减去左边距，右移一位，然后加上左边距，得到中间值
+            // right-left 就是从0开始到n， 右移动一位就是除以2，获得到这个区间的一半，加上起始的left 就是(right + left)/2
             int middle = ((right - left) >> 1) + left;
             // 如果中间位置的元素等于目标元素，返回中间位置的索引
             if (nums[middle] == target) {
@@ -84,6 +85,9 @@ public class LeetCode35 {
         int[] ints = {1, 3, 5, 8,10};
         int[] ints1 = {};
 
+        int middle = ((8 - 4) >> 1) + 4;
+
+        // 1000 - 0100 = 0100 >> 1 = 0010 ==> 2 + 4
         System.out.println(searchInsert1(ints, 2));
     }
 }
