@@ -174,13 +174,38 @@ public class LeetCode203 {
     }
 
 
+    /**
+     * 0 1 2 3
+     * 加上虚拟表头节点
+     * @param head
+     * @param val
+     * @return
+     */
+    public ListNode removeElements7(ListNode head, int val) {
+        ListNode virtualHead = new ListNode(0, head);
+        ListNode pre = virtualHead;
+        ListNode index = head;
+        head = virtualHead;
+        while (index != null) {
+            if (index.val == val) {
+                pre.next = index.next;
+                index = pre.next;
+            }else {
+                pre = pre.next;
+                index = index.next;
+            }
+        }
+        return head.next;
+    }
 
 
-    @Test
+
+
+        @Test
     public void Test() {
-        ListNode listNode = ListNode.listNodeFromArray(new int[]{6,6,6,6});
+        ListNode listNode = ListNode.listNodeFromArray(new int[]{7,7,7,7});
 //        ListNode.printList(listNode);
-        ListNode listNode1 = removeElements(listNode, 6);
+        ListNode listNode1 = removeElements7(listNode, 7);
         ListNode.printList(listNode1);
     }
 }
