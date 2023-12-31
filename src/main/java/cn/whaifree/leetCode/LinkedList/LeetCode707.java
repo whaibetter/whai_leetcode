@@ -1,5 +1,6 @@
 package cn.whaifree.leetCode.LinkedList;
 
+import cn.whaifree.leetCode.model.ListNode;
 import org.junit.Test;
 
 /**
@@ -155,18 +156,18 @@ class MyLinkedList1 {
     }
 }
 
-class ListNode{
-    int val;
-    ListNode next;
-
-    public ListNode() {
-    }
-
-    public ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
+//class ListNode{
+//    int val;
+//    ListNode next;
+//
+//    public ListNode() {
+//    }
+//
+//    public ListNode(int val, ListNode next) {
+//        this.val = val;
+//        this.next = next;
+//    }
+//}
 
 /**
  * 执行用时分布9ms

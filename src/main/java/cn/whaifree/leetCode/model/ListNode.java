@@ -1,5 +1,6 @@
 package cn.whaifree.leetCode.model;
 
+
 public class ListNode {
 
     public int val;
@@ -46,4 +47,5 @@ public class ListNode {
         }
 
     }
+
 }
