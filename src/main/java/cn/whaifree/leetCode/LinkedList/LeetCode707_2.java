@@ -1,4 +1,4 @@
-package cn.whaifree.leetCode.middle;
+package cn.whaifree.leetCode.LinkedList;
 
 import org.junit.Test;
 

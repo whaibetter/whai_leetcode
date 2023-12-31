@@ -1,8 +1,6 @@
-package cn.whaifree.leetCode.easy;
+package cn.whaifree.leetCode.Array;
 
 import org.junit.Test;
-
-import java.text.Format;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

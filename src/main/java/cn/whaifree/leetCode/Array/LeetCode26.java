@@ -1,4 +1,4 @@
-package cn.whaifree.leetCode.easy;
+package cn.whaifree.leetCode.Array;
 
 import org.junit.Test;
 

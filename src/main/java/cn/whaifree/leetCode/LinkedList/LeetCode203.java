@@ -1,4 +1,4 @@
-package cn.whaifree.leetCode.easy;
+package cn.whaifree.leetCode.LinkedList;
 
 
 import cn.whaifree.leetCode.model.ListNode;
