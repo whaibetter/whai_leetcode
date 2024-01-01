@@ -3,13 +3,18 @@ package cn.whaifree.leetCode.LinkedList;
 import cn.whaifree.leetCode.model.ListNode;
 import org.junit.Test;
 
+import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Stack;
 
 public class LeetCode142 {
 
     @Test
     public void test() {
+
+
+
         Solution solution = new Solution();
         ListNode listNode1= new ListNode(1);
         ListNode listNode2= new ListNode(2,listNode1);
