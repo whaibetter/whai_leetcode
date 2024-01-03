@@ -45,7 +45,10 @@ public class ListNode {
             System.out.print(curr.val + " ");
             curr = curr.next;
         }
+    }
 
+    public void printList() {
+        printList(this);
     }
 
 }
