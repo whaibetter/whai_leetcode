@@ -10,15 +10,14 @@ import java.util.List;
 
 public class LeetCode151 {
 
+
+    // todo
     @Test
     public void test() {
-        String s = "  the   sky    is    blue";
+        String s = "  a b cd ef g  ";
+        System.out.println(new Solution1().reverseWords(s));
 
 
-        char[] chars = new Solution1().deleteSpace(s.toCharArray());
-        for (char aChar : chars) {
-            System.out.println("=" + aChar + "=");
-        }
     }
 
     class Solution {
@@ -44,36 +43,68 @@ public class LeetCode151 {
     // 不要使用辅助空间，空间复杂度要求为O(1)
     class Solution1 {
         public String reverseWords(String s) {
-            char[] chars = s.toCharArray();
+            StringBuilder stringBuilder = deleteSpace(s, ' ');
+            reverse(stringBuilder, 0, stringBuilder.length() - 1);
+            reverseWord(stringBuilder);
             // 移除多余空格
             // 反转char
             // 反转每个字符
-            return null;
+            return stringBuilder.toString();
         }
 
-        public char[] deleteSpace(char[] chars) {
-
-            int superFlowSpace = 0;
-
+        public void reverseWord(StringBuilder stringBuilder) {
+            int start = 0;
             int index = 0;
-            System.out.println(chars[index] == ' ');
-            while (chars[index] == ' ') {
-                superFlowSpace++;
+            while (index < stringBuilder.length() + 1) {
+                if (index == stringBuilder.length() || stringBuilder.charAt(index) == ' ') {
+                    reverse(stringBuilder, start, index - 1);
+                    start = index + 1;
+                }
                 index++;
             }
-            index = 0;
-            while (index < chars.length - 1 - superFlowSpace) {
-                chars[index] = chars[index + superFlowSpace];
-                if (' ' == chars[index + superFlowSpace] && ' ' == chars[index + superFlowSpace + 1]) {
-                    superFlowSpace++;
-                } else {
-                    index++;
-                }
-
+        }
+        public void reverse(StringBuilder str, int start, int end) {
+            while (start < end) {
+                char tmp = str.charAt(start);
+                str.setCharAt(start, str.charAt(end));
+                str.setCharAt(end, tmp);
+                end--;
+                start++;
             }
+        }
 
 
-            return Arrays.copyOfRange(chars, 0, chars.length - superFlowSpace);
+        /**
+         * 双指针移动元素，移除target
+         * - 参考LeetCode 27
+
+         * @param target
+         * @return
+         */
+        public StringBuilder deleteSpace(String s,char target) {
+
+            // 前后指针
+            int start = 0;
+            int end = s.length() - 1;
+            while (s.charAt(start) == target) start++;
+            while (s.charAt(end) == target) end--;
+            // 1. 删除首尾空格
+
+            StringBuilder stringBuilder = new StringBuilder();
+            while (start <= end) {
+                if (s.charAt(start) !=target){
+                    stringBuilder.append(s.charAt(start) );
+                }else if (s.charAt(start)  == target && stringBuilder.charAt(stringBuilder.length() - 1) != target) {
+                    stringBuilder.append(s.charAt(start) );
+                }
+                start++;
+            }
+            // 2. 如果遇到空格，判断上一个是不是空格
+            //   - 不是，入String
+            //   - 是，跳过
+
+
+            return stringBuilder;
         }
 
     }
