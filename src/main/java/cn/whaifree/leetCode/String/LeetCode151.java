@@ -2,10 +2,7 @@ package cn.whaifree.leetCode.String;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class LeetCode151 {
@@ -15,7 +12,7 @@ public class LeetCode151 {
     @Test
     public void test() {
         String s = "  a b cd ef g  ";
-        System.out.println(new Solution1().reverseWords(s));
+        System.out.println(new Solution2().reverseWords(s));
 
 
     }
@@ -105,6 +102,20 @@ public class LeetCode151 {
 
 
             return stringBuilder;
+        }
+
+    }
+
+
+    class Solution2{
+
+        public String reverseWords(String s) {
+            // 删除前后空白
+            String trim = s.trim();
+            String[] split = trim.split("\\s+");
+            List<String> list = Arrays.asList(split);
+            Collections.reverse(list);
+            return String.join(" ", list);
         }
 
     }
