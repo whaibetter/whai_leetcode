@@ -40,6 +40,9 @@ public class ListNode {
      * @param head 链表的头节点
      */
     public static void printList(ListNode head) {
+        if (head == null) {
+            System.out.println("null!");
+        }
         ListNode curr = head;
         while (curr != null) {
             System.out.print(curr.val + " ");
