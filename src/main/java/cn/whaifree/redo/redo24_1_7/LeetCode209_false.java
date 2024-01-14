@@ -1,8 +1,8 @@
-package cn.whaifree.redo;
+package cn.whaifree.redo.redo24_1_7;
 
 import org.junit.Test;
 
-public class LeetCode209 {
+public class LeetCode209_false {
 
     @Test
     public void test() {

@@ -1,4 +1,4 @@
-package cn.whaifree.redo;
+package cn.whaifree.redo.redo24_1_7;
 
 import cn.hutool.core.lang.hash.Hash;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LeetCode287 {
+public class LeetCode287_false {
 
     @Test
     public void test() {

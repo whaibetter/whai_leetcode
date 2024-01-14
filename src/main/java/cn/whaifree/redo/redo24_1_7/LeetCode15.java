@@ -1,4 +1,4 @@
-package cn.whaifree.redo;
+package cn.whaifree.redo.redo24_1_7;
 
 
 import org.junit.Test;

@@ -1,10 +1,10 @@
-package cn.whaifree.redo;
+package cn.whaifree.redo.redo24_1_7;
 
 import cn.whaifree.leetCode.model.ListNode;
 import org.junit.Test;
 
 // 递归逆转链表
-public class LeetCode206 {
+public class LeetCode206_false {
 
     @Test
     public void test() {

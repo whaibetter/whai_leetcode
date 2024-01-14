@@ -1,9 +1,9 @@
-package cn.whaifree.redo;
+package cn.whaifree.redo.redo24_1_7;
 
 import cn.whaifree.leetCode.model.ListNode;
 import org.junit.Test;
 
-public class LeetCode2487 {
+public class LeetCode2487_false {
 
     @Test
     public void test() {

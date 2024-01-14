@@ -48,7 +48,7 @@ public class LeetCode347 {
             System.out.println(i);
         }
 
-        
+
     }
 
     class Solution {
