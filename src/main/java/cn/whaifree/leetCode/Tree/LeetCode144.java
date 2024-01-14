@@ -50,8 +50,6 @@ public class LeetCode144 {
     }
 
     class Solution1 {
-
-
         public List<Integer> preorderTraversal(TreeNode root) {
             List<Integer> res = new LinkedList<Integer>();
             if (root == null) {
