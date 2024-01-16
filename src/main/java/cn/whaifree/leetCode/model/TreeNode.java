@@ -55,6 +55,10 @@ public class TreeNode {
         printNodeInternal(Collections.singletonList(root), 1, maxLevel);
     }
 
+    public void printTree() {
+        printTree(this);
+    }
+
     private static void printNodeInternal(List<TreeNode> nodes, int level, int maxLevel) {
         if (nodes == null || nodes.isEmpty() || isAllElementsNull(nodes)) {
             return;
