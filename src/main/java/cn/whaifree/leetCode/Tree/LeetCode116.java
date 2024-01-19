@@ -51,13 +51,10 @@ public class LeetCode116 {
         node.left.right = new Node(5);
         node.right.left = new Node(6);
         node.right.right = new Node(7);
-        System.out.println(new Solution().connect(node));
+        System.out.println(new Solution1().connect(node));
     }
 
     class Solution {
-
-
-
 
         public Node connect(Node root) {
             if (root == null) {
@@ -87,6 +84,32 @@ public class LeetCode116 {
             }
             return root;
 
+        }
+    }
+
+    class Solution1 {
+
+        /**
+         * 递归方法
+         * @param root
+         * @return
+         */
+        public Node connect(Node root) {
+            if (root == null) {
+                return null;
+            }
+            circle(root);
+            return root;
+        }
+
+        void circle(Node root) {
+            if (root == null) {
+                return;
+            }
+            if (root.left!=null) root.left.next = root.right == null ? null : root.right;
+            if (root.right!=null) root.right.next = root.next == null ? null : root.next.left;
+            circle(root.left);
+            circle(root.right);
         }
     }
 }
