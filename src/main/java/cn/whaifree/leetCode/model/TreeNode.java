@@ -1,6 +1,7 @@
 package cn.whaifree.leetCode.model;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * @version 1.0
@@ -130,6 +131,18 @@ public class TreeNode {
         }
 
         return true;
+    }
+
+    public static TreeNode constructRandom(Integer number) {
+        Random random = new Random();
+        List<Integer> tree = new ArrayList<Integer>();
+        for (int i = 0; i < number; i++) {
+            tree.add(random.nextInt(10));
+        }
+        // 将Arraylist变为数组
+        Integer[] objects = tree.toArray(new Integer[tree.size()]);
+
+        return constructTree(objects);
     }
 
     public static TreeNode constructTree(Integer[] array) {
