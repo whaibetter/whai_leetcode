@@ -160,6 +160,7 @@ public class TreeNode {
         while (index < length) {
             index++;
             if (index >= length) {
+                root.printTree();
                 return root;
             }
             currNode = nodeQueue.poll();
@@ -170,6 +171,7 @@ public class TreeNode {
             }
             index++;
             if (index >= length) {
+                root.printTree();
                 return root;
             }
             Integer rightChild = array[index];
@@ -178,7 +180,7 @@ public class TreeNode {
                 nodeQueue.offer(currNode.right);
             }
         }
-
+        root.printTree();
         return root;
     }
 
