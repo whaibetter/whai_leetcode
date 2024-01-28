@@ -43,6 +43,33 @@ public class TreeNode {
 //        }
 //    }
 
+    public static List<Integer> treeToArray(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null)
+            return result;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node != null) {
+                result.add(node.val);
+                queue.offer(node.left);
+                queue.offer(node.right);
+            } else {
+                result.add(null);
+            }
+        }
+
+        // Remove trailing null values from the end
+        while (!result.isEmpty() && result.get(result.size() - 1) == null) {
+            result.remove(result.size() - 1);
+        }
+
+        return result;
+    }
+
     public static int getTreeDepth(TreeNode root) {
         if (root == null) {
             return 0;
@@ -143,6 +170,15 @@ public class TreeNode {
         Integer[] objects = tree.toArray(new Integer[tree.size()]);
 
         return constructTree(objects);
+    }
+
+    public static TreeNode constructTreeByArray(Integer... s) {
+        ArrayList<Integer> ints = new ArrayList<>();
+        for (Integer integer : s) {
+            ints.add(integer);
+        }
+        Integer[] is = ints.toArray(s);
+        return constructTree(is);
     }
 
     public static TreeNode constructTree(Integer[] array) {

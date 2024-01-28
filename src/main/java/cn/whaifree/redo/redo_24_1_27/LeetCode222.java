@@ -41,8 +41,9 @@ public class LeetCode222 {
             // 计算两边的深度，如果深度一样，就是完全二叉树，返回 2^0+2^1+2^2...
             // 满二叉树
             if (rightDepth == leftDepth) {
-                // 相当于 2^0+2^1+....+2^rightDepth
-                return (2 << rightDepth) - 1;
+                // 为满二叉树，满二叉树的节点个数
+                // 等价于 2 << rightDepth -1
+                return (int) Math.pow(2, rightDepth + 1) - 1;
             }
 
             // 如果两边深度不一样，返回+1
