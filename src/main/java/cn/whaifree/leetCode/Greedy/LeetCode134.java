@@ -11,11 +11,26 @@ import org.junit.Test;
 public class LeetCode134 {
 
     @Test
-    public void test() {
-        System.out.println(new Solution().canCompleteCircuit(
-                new int[]{5,1,2,3,4},
-                new int[]{4,4,1,5,1}
-        ));
+    public void test() throws InterruptedException {
+
+        System.out.println("初始化内存 -Xms");
+        System.out.println(Runtime.getRuntime().totalMemory() / 1024 / 1024 + "m");
+
+        System.out.println("最大可使用内存 ：");
+        System.out.println(Runtime.getRuntime().freeMemory() / 1024 / 1024 + "m");
+
+        System.out.println("最大堆内存：-Xmx");
+        System.out.println(Runtime.getRuntime().maxMemory() / 1024 / 1024 + "m");
+
+        // -XX+PrintGCDetails
+
+        int[] ints = new int[10000];
+//        Thread.sleep(1000000);
+
+//        System.out.println(new Solution().canCompleteCircuit(
+//                new int[]{5,1,2,3,4},
+//                new int[]{4,4,1,5,1}
+//        ));
 
     }
 

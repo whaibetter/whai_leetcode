@@ -2,10 +2,7 @@ package cn.whaifree.leetCode;
 
 import cn.whaifree.leetCode.Tree.LeetCode94;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -36,6 +33,11 @@ public class Test {
     private static int number;
 
     private int getNumber;
+
+
+
+
+
 
 
     public int minus() {

@@ -16,13 +16,14 @@ public class LeetCode860 {
 
     @Test
     public void test() {
-        System.out.println(new Solution().lemonadeChange(new int[]{5,5,10,10,20}));
+        System.out.println(new Solution().lemonadeChange(new int[]{5, 5, 10, 10, 20}));
     }
 
     class Solution {
 
         /**
          * bills[i] 不是 5 就是 10 或是 20
+         *
          * @param bills
          * @return
          */
@@ -55,4 +56,6 @@ public class LeetCode860 {
 
 
     }
+
+
 }
