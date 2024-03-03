@@ -10,6 +10,11 @@ import org.junit.Test;
  */
 public class LeetCode134 {
 
+
+    public static void main(String[] args) {
+        
+    }
+
     @Test
     public void test() {
         System.out.println(new Solution().canCompleteCircuit(new int[]{1, 2, 3, 4, 5}, new int[]{3, 4, 5, 1, 2}));
