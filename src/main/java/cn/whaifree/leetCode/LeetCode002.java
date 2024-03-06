@@ -1,5 +1,7 @@
 package cn.whaifree.leetCode;
 
+import java.util.ArrayList;
+
 /**
  *
  *
@@ -113,4 +115,26 @@ class ListNode {
     ListNode() {}
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class RefCountGC{
+    // 这个成员属性的唯一作用就是占用一点内存
+    private byte[] bigSize = new byte[5*1024*1024];
+    // 引用
+    Object reference = null;
+
+    byte[]buffer = new byte[1*1024*1024];//1MB
+    public static void main(String[] args) {
+        ArrayList<RefCountGC> list = new ArrayList<>();
+        int count = 0;
+        try {
+            while (true) {
+                list.add(new RefCountGC());
+                count++;
+            }
+        }catch(Throwable e){
+            System.out.println("count：" + count);
+            e.printStackTrace();
+        }
+    }
 }
