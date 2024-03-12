@@ -16,7 +16,7 @@ public class LeetCode17 {
     @Test
     public void test() {
         String digits = "23";
-        new Solution1().letterCombinations(digits).forEach(s -> System.out.println(s));
+        new Solution().letterCombinations(digits).forEach(s -> System.out.println(s));
     }
 
     class Solution {

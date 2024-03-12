@@ -108,6 +108,9 @@ public class Tes1 {
 
     }
 
+    private static final Object lock = new Object();
+    private static int count = 0;
+
     public static void main(String[] args) {
         // 创建一个TreeNode对象并创建其对应的PhantomReference和ReferenceQueue
         TreeNode treeNode = new TreeNode(11);
@@ -130,6 +133,37 @@ public class Tes1 {
         } else {
             System.out.println("TreeNode对象还未被垃圾回收器回收");
         }
+
+        Thread t1 = new Thread(() -> {
+            synchronized (lock) {
+                while (count < 10) {
+                    System.out.println("Thread 1: " + count++);
+                    lock.notify();
+                }
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized (lock) {
+                while (count < 20) {
+                    System.out.println("Thread 2: " + count++);
+                    lock.notify();
+                }
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
     }
 
 }
