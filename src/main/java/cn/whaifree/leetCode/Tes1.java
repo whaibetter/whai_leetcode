@@ -166,4 +166,48 @@ public class Tes1 {
         t2.start();
     }
 
+
+
 }
+
+class Sun implements Inter,Outer {
+
+
+    public static void main(String[] args) {
+        new Sun().testDefault();
+        Inter.testStatic();
+    }
+
+    /**
+     * 必须重写
+     */
+    @Override
+    public void testDefault() {
+        Outer.super.testDefault();
+        Inter.super.testDefault();
+    }
+}
+
+
+interface Inter{
+
+    default void testDefault(){
+        System.out.println("testDefault");
+    }
+
+    static void testStatic(){
+        System.out.println("testStatic");
+    }
+}
+
+interface Outer{
+
+    default void testDefault(){
+        System.out.println("testDefault outer");
+    }
+
+    static void testStatic(){
+        System.out.println("testStatic outer");
+    }
+}
+
