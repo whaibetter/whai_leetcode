@@ -1,7 +1,7 @@
 package cn.whaifree.leetCode.Tree;
 
 import cn.whaifree.leetCode.model.TreeNode;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import org.junit.Test;
 
 import java.util.*;

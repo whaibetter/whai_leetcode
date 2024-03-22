@@ -1,7 +1,7 @@
 package cn.whaifree.leetCode.LinkedList;
 
 import cn.whaifree.leetCode.model.ListNode;
-import com.sun.jmx.remote.internal.ArrayQueue;
+
 import org.junit.Test;
 
 import java.util.List;

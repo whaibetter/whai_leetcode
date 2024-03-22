@@ -1,4 +1,4 @@
-package cn.whaifree.redo.redo_24_2_22;
+package cn.whaifree.redo.redoAll;
 
 import cn.whaifree.leetCode.model.ListNode;
 import org.junit.Test;
@@ -6,16 +6,16 @@ import org.junit.Test;
 /**
  * @version 1.0
  * @Author whai文海
- * @Date 2024/2/22 12:35
+ * @Date 2024/3/20 14:06
  * @注释
  */
 public class LeetCode206 {
 
     @Test
     public void test() {
-        new Solution().reverseList(ListNode.listNodeFromArray(new int[]{1, 2, 3})).printList();
+        ListNode listNode = new Solution().reverseList(ListNode.listNodeFromArray(new int[]{1, 2, 3, 4, 5}));
+        listNode.printList();
     }
-
 
     class Solution {
         public ListNode reverseList(ListNode head) {
@@ -28,7 +28,8 @@ public class LeetCode206 {
             }
             ListNode tmp = after.next;
             after.next = before;
-            return reverse(after,tmp);
+            return reverse(after, tmp);
         }
+
     }
 }

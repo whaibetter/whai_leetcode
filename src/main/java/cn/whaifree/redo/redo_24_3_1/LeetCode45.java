@@ -2,7 +2,6 @@ package cn.whaifree.redo.redo_24_3_1;
 
 import org.junit.Test;
 
-import javax.annotation.PreDestroy;
 
 /**
  * @version 1.0

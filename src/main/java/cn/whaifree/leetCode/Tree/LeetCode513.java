@@ -1,12 +1,14 @@
 package cn.whaifree.leetCode.Tree;
 
 import cn.whaifree.leetCode.model.TreeNode;
-import javafx.scene.layout.VBox;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @version 1.0
@@ -17,6 +19,16 @@ import java.util.List;
 public class LeetCode513 {
     @Test
     public void test() {
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        executor.submit(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                return null;
+            }
+
+        });
+
+
         TreeNode root = TreeNode.constructTree(new Integer[]{1});
         root.printTree();
         System.out.println(new Solution1().findBottomLeftValue(root));

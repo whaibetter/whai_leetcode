@@ -1,7 +1,7 @@
 package cn.whaifree.leetCode.Tree;
 
 import cn.whaifree.leetCode.model.TreeNode;
-import jdk.nashorn.internal.runtime.RewriteException;
+
 import org.junit.Test;
 
 /**
