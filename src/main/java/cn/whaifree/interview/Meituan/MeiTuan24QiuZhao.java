@@ -2,6 +2,8 @@ package cn.whaifree.interview.Meituan;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -49,6 +51,86 @@ public class MeiTuan24QiuZhao {
             }
             System.out.println(max);
 
+        }
+
+    }
+
+    @Test
+    public void test1() {
+        Solution_2 solution_2 = new Solution_2();
+        solution_2.max(new int[]{1,4,4});
+    }
+
+    class Solution_2{
+
+        public void max(int[] ints) {
+            // 统计每个数出现的数量
+            // 遍历每个数i，判断i+1和i-1的数量是否>0,如果>0,就进行一次操作 i+1和i-1的数量-1，i的数量+2
+            // 每经过一次操作，需要重新遍历
+            HashMap<Integer, Integer> map = new HashMap<>();
+            for (int anInt : ints) {
+                Integer integer = map.get(anInt);
+                if (integer == null) {
+                    map.put(anInt, 1);
+                }else {
+                    map.put(anInt, integer + 1);
+                }
+            }
+
+            map.forEach(
+                    (k, v) -> {
+                        System.out.println(k + ":" + v);
+                    }
+            );
+
+
+
+        }
+
+    }
+
+    @Test
+    public void test2() {
+        Solution_3 solution_3 = new Solution_3();
+        int[] ints = {1,0,0,0,1};
+        solution_3.max(ints);
+    }
+
+    class Solution_3{
+
+        public static void main(String[] args) {
+            Scanner in = new Scanner(System.in);
+            char[] chars = in.nextLine().toCharArray();
+            // chars转为 ints
+            int[] ints = new int[chars.length];
+            for (int i = 0; i < chars.length; i++) {
+                ints[i] = chars[i] - '0';
+            }
+            max(ints);
+        }
+
+        public static void max(int[] ints) {
+
+            int res = 0;
+            for (int i = 0; i < ints.length; i++) {
+                for (int j = 1; i + j < ints.length; j++) {
+                    res += change(Arrays.copyOf(ints, ints.length), i, i + j);
+                }
+            }
+            System.out.println(res);
+        }
+
+        public static int change(int[] ints, int start, int end) {
+            int res = 0;
+            while (start < end ) {
+                if (ints[start] == ints[start + 1]) {
+
+                    res++;
+                    ints[start + 1] = ints[start + 1] == 1 ? 0 : 1;
+                }
+                start++;
+            }
+            return res;
         }
 
     }

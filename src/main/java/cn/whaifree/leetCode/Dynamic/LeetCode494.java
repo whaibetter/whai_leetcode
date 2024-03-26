@@ -169,5 +169,64 @@ public class LeetCode494 {
         }
     }
 
+    class Solution3 {
+        /**
+         * 查找目标和的方法数
+         * 给定一个整数数组 nums 和一个目标整数 target，求出可以通过从数组中选择数字并进行加法运算得到目标和的方法数。
+         * 数组中的每个数字可以被选择任意次数。
+         *
+         * 其中 dp[i][j] 表示在数组 nnums 的前 i 个数中选取元素，使得这些元素之和等于 j 的方案数
+         *
+         *
+         * @param nums 整数数组，包含要进行加法运算的整数
+         * @param target 目标整数，要达到的和
+         * @return 返回可以通过选择数组中的数字并进行加法运算得到目标和的方法数
+         */
+        public int findTargetSumWays(int[] nums, int target) {
+            // 计算数组 nums 中所有数字的和
+            int sum = 0;
+            for (int num : nums) {
+                sum += num;
+            }
+            // 计算达到目标和需要减去的数
+            int diff = sum - target;
+            // 如果差值小于0或者差值为奇数，则无法达到目标和，返回0
+            if (diff < 0 || diff % 2 != 0) {
+                return 0;
+            }
+            // 计算可以取的负数的个数
+            int n = nums.length;
+            int neg = diff / 2;
+            // 使用动态规划的二维数组，dp[i][j] 表示前 i 个数字中选取和为 j 的方法数
+            int[][] dp = new int[n + 1][neg + 1];
+            // 初始化，当不选取任何数字时，和为 0 的方法数为 1
+            dp[0][0] = 1;
+            // 遍历数组 nums，更新 dp 数组
+            for (int i = 1; i <= n; i++) {
+                int num = nums[i - 1];
+                for (int j = 0; j <= neg; j++) {
+                    // 不选择当前数字 num
+                    dp[i][j] = dp[i - 1][j];
+                    // 选择当前数字 num
+                    if (j >= num) {
+                        dp[i][j] += dp[i - 1][j - num];
+                    }
+                }
+            }
+            // 返回最后一个数字选取和为 neg 的方法数
+            return dp[n][neg];
+        }
+
+    }
+
+
+    @Test
+    public void test1()
+    {
+        int[] nums = {1,1,1,1,1};
+        int target = 3;
+        System.out.println(new Solution3().findTargetSumWays(nums, target));
+    }
+
 
 }
