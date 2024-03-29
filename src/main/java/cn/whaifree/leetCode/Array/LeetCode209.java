@@ -2,6 +2,8 @@ package cn.whaifree.leetCode.Array;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * 209. 长度最小的子数组
  * 给定一个含有 n 个正整数的数组和一个正整数 target 。
@@ -82,9 +84,45 @@ public class LeetCode209 {
     }
 
 
+
+    class Solution {
+        /**
+         * 前缀和做法
+         * @param target
+         * @param nums
+         * @return
+         */
+        public int minSubArrayLen(int target, int[] nums) {
+            // 求前缀和
+            int length = nums.length;
+            int[] preSum = new int[length + 1];
+            for (int i = 1; i < preSum.length; i++) {
+                preSum[i] = preSum[i - 1] + nums[i - 1];
+            }
+            // 2,3,1,2,4,3
+            // 因为每个元素都是正数，所以preSum是递增的，可以用二分查找
+            int minLengthFillSolution = Integer.MAX_VALUE;
+            for (int i = 1; i < preSum.length; i++) {
+                // 从0开始查找
+                int fill = target + preSum[i - 1];
+                int intervalEnd = Arrays.binarySearch(preSum, fill); // 没找到就会返回负数
+                if (intervalEnd < 0) {
+                    intervalEnd = -intervalEnd - 1; // 防止查出来的是负数
+                }
+                // 这个区间如果合理，就可能是正常的区间
+                if (intervalEnd <= length)
+                    minLengthFillSolution = Math.min(minLengthFillSolution, intervalEnd - (i - 1));
+                // 注意区分下标 intervalEnd和i-1 前缀和为fill和target
+            }
+            return minLengthFillSolution == Integer.MAX_VALUE ? 0 : minLengthFillSolution;
+        }
+    }
+
     @Test
     public void list() {
-        System.out.println(minSubArrayLen1(5, new int[]{2,3,6}));
+        System.out.println(new Solution().minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3}));
+
+//        System.out.println(minSubArrayLen1(5, new int[]{2,3,6}));
     }
 
 }
