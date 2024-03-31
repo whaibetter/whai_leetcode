@@ -90,6 +90,7 @@ public class LeetCode202 {
             Set<Integer> set = new HashSet<>();
             while (n != 1) {
                 n = getNextNumber(n);
+                System.out.println(n);
                 if (set.contains(n)) {
                     return false;
                 } else {
