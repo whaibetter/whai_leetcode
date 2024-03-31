@@ -1,7 +1,6 @@
 package cn.whaifree.leetCode.model;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * @version 1.0
@@ -42,6 +41,13 @@ public class TreeNode {
 //            this.right.printTree();
 //        }
 //    }
+
+
+    @Override
+    public String toString() {
+        printTree(this);
+        return null;
+    }
 
     public static List<Integer> treeToArray(TreeNode root) {
         List<Integer> result = new ArrayList<>();
