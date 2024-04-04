@@ -2,8 +2,8 @@ package cn.whaifree.leetCode.Hash;
 
 import org.junit.Test;
 
+import java.io.Serializable;
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * 1. 两数之和
@@ -39,7 +39,7 @@ import java.util.HashSet;
  *
  * 进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？
  */
-public class LeetCode1 {
+public class LeetCode1 implements Serializable {
 
     @Test
     public void test() {
