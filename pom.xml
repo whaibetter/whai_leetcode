@@ -4,9 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.example</groupId>
-	<artifactId>LeetCode</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<groupId>org.example</groupId> <!--groupId表示当前 Maven 项目隶属的组织或公司-->
+	<artifactId>LeetCode</artifactId> <!--当前 Maven 项目的名称-->
+	<version>1.0-SNAPSHOT</version><!--定义了 Maven 项目当前所处版本-->
+	<packaging>jar</packaging> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
@@ -35,5 +36,45 @@
 			<version>4.12</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<!--javadoc-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!--maven-resource-plugin-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<!-- 'resources', 'outputDirectory'-->
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
