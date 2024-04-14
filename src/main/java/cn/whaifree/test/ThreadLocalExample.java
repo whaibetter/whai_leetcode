@@ -1,6 +1,8 @@
 package cn.whaifree.test;
 
 public class ThreadLocalExample {
+    // 使用Lambda表达式与withInitial()方法指定初始值
+    private static final ThreadLocal<String> threadLocal = ThreadLocal.withInitial(() -> "Default Value from Lambda");
 
     public static void main(String[] args) throws InterruptedException {
         for(int i=0 ; i<3; i++){

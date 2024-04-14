@@ -15,31 +15,49 @@ public class Stock {
     @Test
     public void test()
     {
-//        int[] prices = {7,1,5,3,6,4};
-        int[] prices = {1,2,3,4,5};
-        System.out.println(new LeetCode123_.Solution().maxProfit(prices));
+        System.out.println(new LeetCode188_.Solution().maxProfit(2, new int[]{3,2,6,5,0,3}));
     }
 }
 
 class LeetCode188_{
 
-    class Solution {
+    static class Solution {
         public int maxProfit(int k, int[] prices) {
             // dp[i][j] 表示第i天交易第k次的最大收益
-            //  dp[i][0] 表示第i天第 0/2 +1 次持有的最大手头
-            //  dp[i][1] 表示第i天第 1/2 +1次未持有的最大手头
+            //  dp[i][1] 表示第i天第 1/2 +1 次持有的最大手头
+            //  dp[i][0] 表示第i天第 0/2 +1次未持有的最大手头
 
-            int[][] dp = new int[prices.length][k * 2];
+            // dp[i][0] = max dp[i-1][0] dp[i-1][1]+prices[i]
+            // dp[i][1] = max dp[i-1][1] dp[i-1][0]-prices[i]
+            // dp[i][2] = max dp[i-1][2] dp[i-1][1]+prices[i]
+            // dp[i][3] = max dp[i-1][3] dp[i-1][2]-prices[i]
+
+            int[][] dp = new int[prices.length][k * 2 + 1];
             // 未持有 初始化
-            for (int i = 0; i < prices.length; i += 2) {
-                dp[i][0] = -prices[0];
+            for (int i = 1; i <= k * 2; i += 2) {
+                dp[0][i] = -prices[0];
             }
-            for (int i = 0; i < prices.length; i++) {
-                for (int j = 0; j < k * 2; j++) {
-
+            for (int i = 1; i < prices.length; i++) {
+                for (int j = 0; j < k ; j++) {
+                    int indexJ = 2 * j + 1;
+                    dp[i][indexJ] = Math.max(dp[i - 1][indexJ], dp[i - 1][indexJ - 1] - prices[i]);
+                    dp[i][indexJ + 1] = Math.max(dp[i - 1][indexJ + 1], dp[i - 1][indexJ] + prices[i]);
                 }
             }
-            return 1;
+            return dp[prices.length - 1][k * 2];
+
+            // 假设k=2
+//            int[][] dp = new int[prices.length][5];
+//            // 4种状态 1 3 表示持有
+//            dp[0][1] = -prices[0];
+//            dp[0][3] = -prices[0];
+//            for (int i = 1; i < prices.length; i++) {
+//                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+//                dp[i][2] = Math.max(dp[i - 1][2], dp[i - 1][1] + prices[i]);
+//                dp[i][3] = Math.max(dp[i - 1][3], dp[i - 1][2] - prices[i]);
+//                dp[i][4] = Math.max(dp[i - 1][4], dp[i - 1][3] + prices[i]);
+//            }
+//            return dp[prices.length - 1][4];
         }
     }
 }
