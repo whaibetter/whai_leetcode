@@ -1,4 +1,4 @@
-package cn.whaifree.MonotoneStack;
+package cn.whaifree.leetCode.MonotoneStack;
 
 import org.junit.Test;
 
