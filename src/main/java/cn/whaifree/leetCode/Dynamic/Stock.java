@@ -222,3 +222,128 @@ class LeetCode121_ {
     }
 }
 
+class LeetCode309_ {
+
+    class Solution {
+        public int maxProfit(int[] prices) {
+            // 卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。
+            /**
+             * boolean[] flag
+             * flag[i] 表示第i天是否卖出获得最大利润
+             *
+             * s2 s3
+             * dp[i][0] 表示 第i天手里不持有股票,i-1也不持有，表明在i-1之前卖出股票 手里有的钱
+             * - i不持有  i-1 不持有 i-2不持有  dp[i-2][0]
+             * - i不持有  i-1 不持有 i-2持有，i-1卖出  dp[i-2][2] + prices[i-1]
+             *
+             * s4
+             * dp[i][1] 表示i不持有，i-1持有 手里有的钱
+             * - 今天为冷冻期 i卖出  dp[i-1][2] + prices[i]
+             *
+             * s1
+             * dp[i][2] 表示 第i天持有股票 手里有的钱
+             * - i-1有 dp[i-1][2]
+             * - 前一天是冷冻期 i和i-1都不持有 dp[i-1][0] - price[i]
+             * - 当天是冷冻期 i不持有 i-1持有  dp[i-1][1] - price[i]
+             *
+             */
+            int[][] dp = new int[prices.length][2];
+            boolean[] flag = new boolean[prices.length];
+
+            for (int i = 1; i < prices.length; i++) {
+                if (dp[i - 1][0] > dp[i - 1][1] + prices[i]) {
+                    dp[i][0] = dp[i - 1][0];
+                }else {
+                    dp[i][0] = dp[i - 1][1] + prices[i];
+                    flag[i] = true;
+                }
+
+//                if
+
+            }
+            return 1;
+
+        }
+    }
+
+    class Solution1 {
+        /**
+         * 状态：
+         * 1. 持有dp[i][0]
+         *      - i-1就持有 dp[i-1][0]
+         *      - 当天买入
+         *          - 前一天是冷冻期 dp[i-1][3] - price[i]
+         *          - 前一天不是冷冻期 dp[i-1][1] - price[i]
+         * 2. 不持有
+         *      - i-1就不持有,i-2或之前卖出过股票 dp[i][1]
+         *          - i-1不持有 i-2不持有  dp[i-1][1]
+         *          - i-1不持有 i-2持有，表明i-1卖出了 dp[i-1][2] + price[i]
+         *      - 今天卖出 dp[i][2]
+         *          - dp[i-1][0]+price[i]
+         *
+         * 3. 冷冻dp[i][3]
+         *      - i-1卖出 dp[i-1][2]
+         * @param prices
+         * @return
+         */
+        public int maxProfit(int[] prices) {
+            int[][] dp = new int[prices.length][4];
+            dp[0][0] -= prices[0];
+            for (int i = 1; i < prices.length; i++) {
+                dp[i][0] = Math.max(dp[i - 1][0], Math.max(dp[i - 1][3] - prices[i], dp[i - 1][1] - prices[i]));
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][3]);
+                dp[i][2] = dp[i - 1][0] + prices[i];
+                dp[i][3] = dp[i - 1][2];
+            }
+            return Math.max(
+                    dp[prices.length - 1][3],
+                    Math.max(
+                            dp[prices.length - 1][1],
+                            dp[prices.length - 1][2]
+                    )
+            );
+        }
+
+        /**
+         * dp[i][0] 表示第i天手里没有股票的 手里的现金
+         *      1. 当天卖出 dp[i-1][1] + prices[i]
+         *      2. i-1天就没有
+         *          dp[i-1][0]
+         * dp[i][1] 表示第i天手里有股票的 手里的现金
+         *      1. 刚刚买入（考虑2天前手里没有股票，i-1天为冷冻期） dp[i-2][0] - prices[i]
+         *      2. i-1就持有  dp[i-1][1]
+         *
+         * 初始化
+         * dp[0][0] = 0
+         * dp[0][1] = -prices[0]
+         * dp[1][0] = Math.max(dp[0][0], dp[0][1] + prices[0]);
+         * dp[1][1] = Math.max(dp[0][1], dp[0][0]-prices[0]);
+         *
+         * @param prices
+         * @return
+         */
+        public int maxProfit1(int[] prices) {
+            if(prices.length==1){
+                return 0;
+            }
+            int[][] dp = new int[prices.length][2];
+            dp[0][0] = 0;
+            dp[0][1] = -prices[0];
+            dp[1][0] = Math.max(dp[0][0], dp[0][1] + prices[1]);
+            dp[1][1] = Math.max(dp[0][1], dp[0][0] - prices[1]);
+            for (int i = 2; i < prices.length; i++) {
+                dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 2][0] - prices[i]);
+            }
+            return dp[prices.length - 1][0];
+        }
+
+
+
+    }
+    public static void main(String[] args) {
+        int[] prices = new int[]{1, 2, 3, 0, 2};
+        System.out.println(new LeetCode309_().new Solution1().maxProfit1(prices));
+    }
+}
+

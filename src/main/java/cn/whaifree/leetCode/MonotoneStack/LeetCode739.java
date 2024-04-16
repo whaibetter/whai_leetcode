@@ -21,7 +21,6 @@ public class LeetCode739 {
         Solution solution = new Solution();
         int[] res = solution.dailyTemperatures(temperatures);
         System.out.println(Arrays.toString(res));
-
     }
 
     class Solution {
