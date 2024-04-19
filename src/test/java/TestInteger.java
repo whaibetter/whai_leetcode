@@ -7,9 +7,7 @@
 public class TestInteger {
 
     public static void main(String[] args) {
-        Integer a = new Integer(100);
-        Integer b = new Integer(100);
-        System.out.println(a == b); //false 两个对象，指向
+
 
         /**
          *   0 new #2 <java/lang/Integer>
