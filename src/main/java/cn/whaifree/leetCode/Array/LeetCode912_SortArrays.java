@@ -3,6 +3,7 @@ package cn.whaifree.leetCode.Array;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
@@ -23,15 +24,20 @@ public class LeetCode912_SortArrays {
     @Test
     public void test() {
 
-        int[] nums = {5, 2, 3, 1,647,24,7,2,8,2,8,1,54,13,6,234,45,234,64,745,32,56,44,32,38};
-        int[] res = new Solution2().sortArray(nums);
-        System.out.println(Arrays.toString(res));
+        int[] nums = {5,1,1,2,0,0};
 
-        int[] ints = Arrays.copyOf(res, res.length);
-        Arrays.sort(nums);
-        System.out.println(Arrays.equals(ints, nums));
+//        int[] res = new Solution2().sortArray(nums);
+//        System.out.println(Arrays.toString(res));
+//
+//        int[] ints = Arrays.copyOf(res, res.length);
+//        Arrays.sort(nums);
+//        System.out.println(Arrays.equals(ints, nums));
 
+        int[] res2 = new MergeSort.Solution().sortArray(nums);
+
+        System.out.println(Arrays.toString(res2));
     }
+
 
 
     class Solution {
@@ -131,5 +137,152 @@ public class LeetCode912_SortArrays {
 
         }
 
+    }
+}
+
+class MergeSort{
+    static class Solution {
+
+        // 归并排序
+        public int[] sortArray(int[] nums) {
+            if (nums.length <= 1) {
+                return nums;
+            }
+            int mid = nums.length / 2;
+            int[] left = Arrays.copyOfRange(nums, 0, mid);
+            int[] right = Arrays.copyOfRange(nums, mid, nums.length);
+            left = sortArray(left);
+            right = sortArray(right);
+            return merge(left, right);
+        }
+
+        public int[] merge(int[] left, int[] right) {
+            int[] res = new int[left.length + right.length];
+            int leftIndex = 0;
+            int rightIndex = 0;
+            int index = 0;
+            while (leftIndex < left.length && rightIndex < right.length) {
+                if (left[leftIndex] < right[rightIndex]) {
+                    res[index] = left[leftIndex];
+                    leftIndex++;
+                }else {
+                    res[index] = right[rightIndex];
+                    rightIndex++;
+                }
+                index++;
+            }
+            while (leftIndex < left.length) {
+                res[index] = left[leftIndex];
+                leftIndex++;
+                index++;
+            }
+            while (rightIndex < right.length) {
+                res[index] = right[rightIndex];
+                rightIndex++;
+                index++;
+            }
+            return res;
+        }
+
+
+
+    }
+}
+
+class QuickSort{
+
+    /**
+     * 快速排序
+     */
+    static class Solution4 {
+        public int[] sortArray(int[] nums) {
+
+            quickSort(nums, 0, nums.length-1);
+            return nums;
+        }
+
+        public int[] quickSort(int[] nums, int left,int right){
+            //如果左指针大于右指针，怎退出循环
+            if(left > right){
+                return null;
+            }
+
+            //! 随机挑选一个幸运儿
+            int q = new Random().nextInt(right - left + 1) + left;
+            swap(nums, right, q);
+
+            int base = nums[left];
+            int i = left;
+            int j = right;
+            while(i != j){
+                //从右往左遍历，当右指针指向的元素大于等于基数时，j--。右指针持续向左移动
+                while(nums[j]>=base && i < j){
+                    j--;
+                }
+                //从左往右遍历，当左指针指向的元素小于等于基数时，i++。左指针持续向右移动
+                while(nums[i]<=base && i < j){
+                    i++;
+                }
+                //当左右两个指针停下来时，交换两个元素
+                swap(nums, i, j);
+
+            }
+            swap(nums,i,left);
+            quickSort(nums,left, i-1);
+            quickSort(nums,i+1,right);
+            return nums;
+        }
+
+
+
+        public void swap(int[] nums, int index1, int indexB) {
+            int tmp = nums[index1];
+            nums[index1] = nums[indexB];
+            nums[indexB] = tmp;
+        }
+    }
+
+    class Solution11 {
+        public int[] sortArray(int[] nums) {
+            quick_sort(nums, 0, nums.length - 1);
+            return nums;
+        }
+
+        private void quick_sort(int[] nums, int left, int right) {
+            if (left >= right) {
+                return;
+            }
+
+
+            int i = left;
+            int j = right;
+            //! 随机挑选一个幸运儿
+            int q = new Random().nextInt(right - left + 1) + left;
+            swap(nums, right, q);
+
+            while (i < j) {
+                while (nums[i] <= nums[right] && i < j) {
+                    i++;
+                }
+                while (nums[right] >= nums[left] && i < j) {
+                    j--;
+                }
+                swap(nums, i, j);
+            }
+
+            swap(nums, i, right);
+
+
+            quick_sort(nums, left, i - 1);
+            quick_sort(nums, i + 1, right);
+        }
+
+
+
+        private void swap(int[] nums, int i, int j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
     }
 }
