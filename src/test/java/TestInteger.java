@@ -1,3 +1,6 @@
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 /**
  * @version 1.0
  * @Author whai文海
@@ -6,7 +9,53 @@
  */
 public class TestInteger {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+//        System.out.println(CompletableFuture.supplyAsync(new Supplier<Object>() {
+//            @Override
+//            public Object get() {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                System.out.println("ssdfsdfs");
+//                return "fdsfsdfsdf";
+//            }
+//        }).get());
+//
+//        CompletableFuture.runAsync(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(10000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        });
+
+
+        CompletableFuture.allOf(
+                CompletableFuture.supplyAsync(
+                        () -> {
+                            try {
+                                Thread.sleep(10000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                            System.out.println("1");
+                            return 1;
+                        }
+                ),
+                CompletableFuture.runAsync(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("2");
+
+                    }
+                })
+        );
 
 
         /**
