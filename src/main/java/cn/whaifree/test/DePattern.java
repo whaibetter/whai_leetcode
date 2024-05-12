@@ -11,6 +11,11 @@ import java.io.FileNotFoundException;
  * @注释
  */
 public class DePattern {
+    /**
+     *
+     * @param args
+     * @throws FileNotFoundException
+     */
     public static void main(String[] args) throws FileNotFoundException {
 
         // 创建一个 FileInputStream 对象，用于读取文件
