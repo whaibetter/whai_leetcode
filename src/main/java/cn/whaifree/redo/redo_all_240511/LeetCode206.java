@@ -18,7 +18,6 @@ public class LeetCode206 {
         listNode.printList();
         ListNode listNode1 = new Solution().reverseList(listNode);
         listNode1.printList();
-
     }
 
     class Solution {
@@ -34,7 +33,10 @@ public class LeetCode206 {
             ListNode next = after.next;
             after.next = pre;
             ListNode reverse = reverse(after, next);
+
+
             return reverse;
+
         }
     }
 }
