@@ -9,8 +9,7 @@ import java.util.HashMap;
 public class LeeCode146 {
 
     @Test
-    public void test()
-    {
+    public void test() {
         LRUCache lruCache = new LRUCache(2);
         lruCache.put(1, 1);
         lruCache.put(2, 2);
@@ -39,7 +38,7 @@ public class LeeCode146 {
                 this.after = after;
             }
 
-            public EntryNode(Integer key ,Integer object) {
+            public EntryNode(Integer key, Integer object) {
                 this.key = key;
                 this.object = object;
             }
@@ -48,7 +47,7 @@ public class LeeCode146 {
             }
         }
 
-        HashMap<Integer,EntryNode> caches;
+        HashMap<Integer, EntryNode> caches;
         EntryNode head;
         EntryNode tail;
         Integer size = null;
@@ -90,7 +89,7 @@ public class LeeCode146 {
                 return;
             }
 
-            EntryNode v = new EntryNode(key,value);
+            EntryNode v = new EntryNode(key, value);
             caches.put(key, v);
             addNode(v);
             if (caches.size() > size) {
@@ -103,6 +102,7 @@ public class LeeCode146 {
 
         /**
          * 删除某个节点
+         *
          * @param entryNode
          */
         public void deleteNode(EntryNode entryNode) {
@@ -112,6 +112,7 @@ public class LeeCode146 {
 
         /**
          * 在尾部增加某个节点
+         *
          * @param node
          */
         public void addNode(EntryNode node) {
