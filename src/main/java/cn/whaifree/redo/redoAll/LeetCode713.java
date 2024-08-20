@@ -51,7 +51,9 @@ public class LeetCode713 {
                 }
                 right++;
                 res += right - left;
+
             }
+
             return res;
         }
     }
