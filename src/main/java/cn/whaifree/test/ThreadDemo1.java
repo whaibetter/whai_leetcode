@@ -1,9 +1,12 @@
 package cn.whaifree.test;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.lang.reflect.Proxy;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Supplier;
 
 public class ThreadDemo1 {
 
@@ -185,6 +188,57 @@ class p2{
 
 
 
+    }
+}
+
+
+class mockException{
+
+    public static void main(String[] args) {
+
+
+        ThreadLocal<Object> objectThreadLocal = new InheritableThreadLocal<>();
+        objectThreadLocal.set("test");
+        objectThreadLocal.get();
+
+        ReentrantLock lock = new ReentrantLock();
+        lock.tryLock();
+        lock.lock();
+        /**
+         * lock 方法
+         * 阻塞等待：调用 lock() 方法时，如果锁已经被其他线程持有，当前线程将阻塞等待直到获得锁。
+         * 不可中断：默认情况下，lock() 方法不会响应中断信号。这意味着即使当前线程被中断，它仍然会继续等待锁。
+         * 保证获取锁：只要线程最终没有被中断或终止，它总会获取到锁。
+         * tryLock 方法
+         * 非阻塞：调用 tryLock() 方法时，如果锁可用，则立即获取锁并返回 true；如果锁已被其他线程持有，则立即返回 false 而不会阻塞等待。
+         * 可选超时：tryLock 还有一个带超时参数的版本 tryLock(long time, TimeUnit unit)，允许线程在指定时间内等待锁。如果在超时时间内锁仍未被获取，则返回 false。
+         * 可中断：tryLock(long time, TimeUnit unit) 方法可以响应中断信号，如果线程在等待过程中被中断，则抛出 InterruptedException。
+         */
+
+        CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(new Supplier<String>() {
+            @Override
+            public String get() {
+                try {
+                    int num = 1 / 0;
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                return "";
+            }
+        });
+        String s = "-";
+        try {
+             s = stringCompletableFuture.get(1, TimeUnit.SECONDS);
+        } catch (TimeoutException e) {
+//            System.out.println("超时了");
+            s = "超时了";
+        } catch (Exception e) {
+            System.out.println(e.getCause().getMessage());
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(s);
     }
 }
 
