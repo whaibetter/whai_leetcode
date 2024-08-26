@@ -14,8 +14,8 @@ public class LeetCode494 {
     public void test()
     {
         Solution solution = new Solution();
-        int[] nums = new int[]{1, 1, 1, 1, 1};
-        int target = 3;
+        int[] nums = new int[]{1,0};
+        int target = 1;
         int i = solution.findTargetSumWays(nums, target);
         System.out.println(i);
     }
