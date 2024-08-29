@@ -1,6 +1,7 @@
 package cn.whaifree.leetCode.model;
 
 import java.util.*;
+import java.util.function.IntFunction;
 
 /**
  * @version 1.0
@@ -185,6 +186,21 @@ public class TreeNode {
         }
         Integer[] is = ints.toArray(s);
         return constructTree(is);
+    }
+
+    public static TreeNode constructTreeByArrayWithInteger(int... s) {
+        ArrayList<Integer> ints = new ArrayList<>();
+        for (Integer integer : s) {
+            ints.add(integer);
+        }
+
+        Integer[] array = ints.toArray(new IntFunction<Integer[]>() {
+            @Override
+            public Integer[] apply(int value) {
+                return new Integer[0];
+            }
+        });
+        return constructTree(array);
     }
 
     public static TreeNode constructTree(Integer[] array) {
