@@ -6,7 +6,9 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class ThreadDemo1 {
 
@@ -191,10 +193,46 @@ class p2{
     }
 }
 
+class dMyException extends Exception {
 
-class mockException{
+    static ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
+        new Thread(() -> {
+            for (int i = 0; i <100 ; i++) {
+                if (map.containsKey("key")) {
+                    map.remove("key");
+                }
+
+            }
+        }).start();
+
+        new Thread(() -> {
+            for (int i = 0; i < 100; i++) {
+                if (!map.containsKey("key")) {
+                    map.put("key", 1);
+                }
+            }
+        }).start();
+    }
+
+}
+class mockException{
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+
+
+
+        List<Future<Integer>> futures = new ArrayList<>();
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(
+                () -> 1
+                , Executors.newFixedThreadPool(10));
+        futures.add(future);
+        for (Future<Integer> integerFuture : futures) {
+            System.out.println(integerFuture.get());
+        }
+
 
 
         ThreadLocal<Object> objectThreadLocal = new InheritableThreadLocal<>();
