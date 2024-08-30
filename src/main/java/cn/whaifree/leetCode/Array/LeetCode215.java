@@ -12,11 +12,16 @@ public class LeetCode215 {
     @Test
     public void main()
     {
-        int[] nums = {3,2,1,5,6,4};
-        int k = 2;
-        Solution solution = new Solution();
-        int i = solution.findKthLargest(nums, k);
-        System.out.println(i);
+        int i = 0;
+        while (true) {
+            i++;
+        }
+//
+//        int[] nums = {3,2,1,5,6,4};
+//        int k = 2;
+//        Solution solution = new Solution();
+//        int i = solution.findKthLargest(nums, k);
+//        System.out.println(i);
     }
 
     class Solution {

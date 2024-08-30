@@ -1,5 +1,9 @@
 package cn.whaifree.test;
 
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.ListIterator;
+
 /**
  * @version 1.0
  * @Author whai文海
@@ -40,4 +44,43 @@ public class hashDB {
     }
 
 
+}
+
+class test{
+
+    public static void main(String[] args) {
+        ArrayList<String> sharedList= new ArrayList<>();
+
+        new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    sharedList.add("Item " + i);
+                    // 模拟一些工作时间
+                    Thread.sleep(50);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Thread was interrupted.");
+            }
+        }).start();
+
+
+        new Thread(() -> {
+            try {
+                ListIterator<String> iterator = sharedList.listIterator();
+                while (iterator.hasNext()) {
+                    System.out.println(iterator.next());
+                    // 模拟一些工作时间
+                    Thread.sleep(100);
+                }
+            } catch (ConcurrentModificationException e) {
+                System.out.println("Caught ConcurrentModificationException during iteration.");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Thread was interrupted.");
+            }
+        }).start();
+
+
+    }
 }
