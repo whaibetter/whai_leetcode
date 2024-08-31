@@ -242,47 +242,47 @@ class QuickSort{
         }
     }
 
-    class Solution11 {
-        public int[] sortArray(int[] nums) {
-            quick_sort(nums, 0, nums.length - 1);
-            return nums;
-        }
-
-        private void quick_sort(int[] nums, int left, int right) {
-            if (left >= right) {
-                return;
-            }
-
-
-            int i = left;
-            int j = right;
-            //! 随机挑选一个幸运儿
-            int q = new Random().nextInt(right - left + 1) + left;
-            swap(nums, right, q);
-
-            while (i < j) {
-                while (nums[i] <= nums[right] && i < j) {
-                    i++;
-                }
-                while (nums[right] >= nums[left] && i < j) {
-                    j--;
-                }
-                swap(nums, i, j);
-            }
-
-            swap(nums, i, right);
-
-
-            quick_sort(nums, left, i - 1);
-            quick_sort(nums, i + 1, right);
-        }
-
-
-
-        private void swap(int[] nums, int i, int j) {
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
-        }
-    }
+//    class Solution11 {
+//        public int[] sortArray(int[] nums) {
+//            quick_sort(nums, 0, nums.length - 1);
+//            return nums;
+//        }
+//
+//        private void quick_sort(int[] nums, int left, int right) {
+//            if (left >= right) {
+//                return;
+//            }
+//
+//
+//            int i = left;
+//            int j = right;
+//            //! 随机挑选一个幸运儿
+//            int q = new Random().nextInt(right - left + 1) + left;
+//            swap(nums, right, q);
+//
+//            while (i < j) {
+//                while (nums[i] <= nums[right] && i < j) {
+//                    i++;
+//                }
+//                while (nums[right] >= nums[left] && i < j) {
+//                    j--;
+//                }
+//                swap(nums, i, j);
+//            }
+//
+//            swap(nums, i, right);
+//
+//
+//            quick_sort(nums, left, i - 1);
+//            quick_sort(nums, i + 1, right);
+//        }
+//
+//
+//
+//        private void swap(int[] nums, int i, int j) {
+//            int temp = nums[i];
+//            nums[i] = nums[j];
+//            nums[j] = temp;
+//        }
+//    }
 }
