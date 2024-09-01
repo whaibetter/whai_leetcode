@@ -1,6 +1,5 @@
 package cn.whaifree.leetCode.Array;
 
-import cn.whaifree.leetCode.model.TreeNode;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -147,81 +146,81 @@ public class LeetCode215 {
 //        System.out.println(i);
     }
 
-    @Test
-    public void test188()
-    {
-        new sol().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 3);
+//    @Test
+//    public void test188()
+//    {
+//        new sol().findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 3);
+//
+//
+//    }
+
+//    class sol{
+//        /**
+//         *    3
+//         *   / \
+//         *  /   \
+//         *  5   -2147483648
+//         * /
+//         * 2       右边那个有问题，所以不行
+//         * @param nums
+//         * @param k
+//         * @return
+//         */
+//        public int findKthLargest(int[] nums, int k) {
+//            Heap heap = new Heap(k);
+//            for (int num : nums) {
+//                heap.add(num);
+//            }
+//            return 1;
+//        }
+//    }
 
 
-    }
-
-    class sol{
-        /**
-         *    3
-         *   / \
-         *  /   \
-         *  5   -2147483648
-         * /
-         * 2       右边那个有问题，所以不行
-         * @param nums
-         * @param k
-         * @return
-         */
-        public int findKthLargest(int[] nums, int k) {
-            Heap heap = new Heap(k);
-            for (int num : nums) {
-                heap.add(num);
-            }
-            return 1;
-        }
-    }
-
-
-    class Heap{
-
-
-        int[] heap = null;
-
-        public Heap(int k) {
-            this.heap = new int[k + 1];
-            Arrays.fill(this.heap, Integer.MIN_VALUE);
-        }
-
-        public void add(int num) {
-            heap[heap.length - 1] = num;
-            shiftUp(heap, heap.length - 1);
-        }
-
-
-        /**
-         * 固定长度的，让其 shiftUp
-         * @param nums
-         * @param numIndex 将 numsIndex 位置上移
-         */
-        public void shiftUp(int[] nums, int numIndex) {
-            int k = numIndex;
-            while (k > 0) {
-                int parent = (k - 1) / 2;
-//                if (nums[numIndex] < nums[parent]) { // 小顶堆
-                if (nums[k] > nums[parent]) { // 大顶堆
-                    // 小顶堆，小的上移
-                    swap(nums, parent, k);
-                    k = parent;
-                }else {
-                    break;
-                }
-                TreeNode.constructTreeByArrayWithInteger(nums);
-            }
-
-        }
-
-        public void swap(int[] nums, int start, int end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-        }
-
-    }
+//    class Heap{
+//
+//
+//        int[] heap = null;
+//
+//        public Heap(int k) {
+//            this.heap = new int[k + 1];
+//            Arrays.fill(this.heap, Integer.MIN_VALUE);
+//        }
+//
+//        public void add(int num) {
+//            heap[heap.length - 1] = num;
+//            shiftUp(heap, heap.length - 1);
+//        }
+//
+//
+//        /**
+//         * 固定长度的，让其 shiftUp
+//         * @param nums
+//         * @param numIndex 将 numsIndex 位置上移
+//         */
+//        public void shiftUp(int[] nums, int numIndex) {
+//            int k = numIndex;
+//            while (k > 0) {
+//                int parent = (k - 1) / 2;
+////                if (nums[numIndex] < nums[parent]) { // 小顶堆
+//                if (nums[k] > nums[parent]) { // 大顶堆
+//                    // 小顶堆，小的上移
+//                    swap(nums, parent, k);
+//                    k = parent;
+//                }else {
+//                    break;
+//                }
+//                TreeNode.constructTreeByArrayWithInteger(nums);
+//            }
+//
+//        }
+//
+//        public void swap(int[] nums, int start, int end) {
+//            int temp = nums[start];
+//            nums[start] = nums[end];
+//            nums[end] = temp;
+//        }
+//
+//    }
 
     class Solution {
         public int findKthLargest(int[] nums, int k) {
