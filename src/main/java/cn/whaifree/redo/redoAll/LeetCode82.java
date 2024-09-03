@@ -28,6 +28,7 @@ public class LeetCode82 {
                     }
                     preIndex.next = index.next;
                     index = preIndex.next;
+
                 } else {
                     preIndex = index;
                     index = index.next;
