@@ -2,14 +2,48 @@ package cn.whaifree.leetCode.Array;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 import static org.junit.Assert.assertArrayEquals;
 
 public class LeetCode215 {
+
+    public static void main(String[] args) throws FileNotFoundException {
+        String name = "/Users/kyriewhluo/IdeaProjects/tsf/tsf-dispatch/src/main/resources/tsf-dispatch.yml";
+        // 读取每一行
+        HashMap<String, List<String>> map = new HashMap<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(name))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("tsf-resource")) {
+                    String[] split = line.split("/");
+                    String key = "/" + split[1] + "/" + split[2];
+                    List<String> orDefault = map.getOrDefault(key, new ArrayList<>());
+                    orDefault.add(line);
+                    map.put(key, orDefault);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        map.forEach(new BiConsumer<String, List<String>>() {
+            @Override
+            public void accept(String s, List<String> strings) {
+                System.out.println("# key:" + s);
+                System.out.println("# size:" + strings.size());
+                for (String string : strings) {
+                    System.out.println(string);
+                }
+
+                for (int i = 0; i < 3; i++) {
+                    System.out.println();
+                }
+            }
+        });
+    }
 
 
     @Test
