@@ -1,5 +1,7 @@
 package cn.whaifree.redo.redo_all_240721;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -81,6 +83,7 @@ public class LeetCode131 {
 
         List<List<String>> res = new ArrayList<>();
         List<String> path = new ArrayList<>();
+
         public List<List<String>> partition(String s) {
             back(s, 0);
             return res;
@@ -111,4 +114,56 @@ public class LeetCode131 {
             return true;
         }
     }
+
+
+    @Test
+    public void test() {
+        new Sol().partition("aabaacac");
+    }
+    static class Sol {
+
+        /**
+         * dp[i][j] 表示i-j是否是回文串
+         *
+         * if s[i]==s[j] && dp[i+1][j-1|
+         *      true
+         *      i从大到小，j从小到大
+         *
+         *
+         * @param s
+         * @return
+         */
+        public List<List<String>> partition(String s) {
+            char[] charArray = s.toCharArray();
+            boolean[][] dp = new boolean[charArray.length + 1][charArray.length + 1];
+//            for (int i = 0; i < dp.length; i++) {
+//                dp[i][i] = true;
+//            }
+
+            for (int i = charArray.length; i > 0; i--) {
+                for (int j = i; j <= charArray.length; j++) {
+                    if (charArray[i - 1] == charArray[j - 1] && (j - i < 2 || dp[i + 1][j - 1])) {
+                        dp[i][j] = true;
+                    }
+                }
+            }
+
+            for (int i = 0; i < charArray.length; i++) {
+                for (int j = i; j < charArray.length; j++) {
+                    if (dp[i][j]) {
+                        System.out.println(s.substring(i - 1, j));
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static void main(String[] args) {
+            while (true) {
+
+            }
+        }
+    }
+
+
 }
