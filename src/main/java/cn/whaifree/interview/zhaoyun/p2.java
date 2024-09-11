@@ -1,4 +1,4 @@
-package cn.whaifree.interview.ccn;
+package cn.whaifree.interview.zhaoyun;
 
 import org.junit.Test;
 
