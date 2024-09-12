@@ -45,7 +45,7 @@ public class AffinityThreadPoolTest {
         l = System.currentTimeMillis();
         synchronized (o) {
             for (int i = 0; i < 3; i++) {
-                int finalI = i;
+                int finalI = i; // 在其他线程拿到 i 时，i 可能已经变了
                 executor.submit("A", () -> {
                     System.out.println(Thread.currentThread().getName() + " A " + finalI);
                     return null;

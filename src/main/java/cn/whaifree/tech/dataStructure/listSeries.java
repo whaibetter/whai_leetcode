@@ -9,13 +9,26 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class listSeries {
 
+    public static void main(String[] args) throws InterruptedException {
+        while (true) {
+            Thread.sleep(1000);
+        }
+    }
+
+    @Test
+    public void testFor() throws InterruptedException {
+        while (true) {
+            Thread.sleep(1000);
+        }
+    }
+
     @Test
     public void test() throws IOException, ClassNotFoundException {
 
         ReentrantLock reentrantLock = new ReentrantLock();
 
     }
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void ma1in(String[] args) throws IOException, ClassNotFoundException {
         List<User> o = new ArrayList<>();
         o.add(new User(1, "110"));
 
@@ -50,6 +63,8 @@ public class listSeries {
                     ", name='" + name + '\'' +
                     '}';
         }
+
+
     }
 
 }
