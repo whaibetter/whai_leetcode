@@ -2,6 +2,7 @@ package cn.whaifree.interview.random;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.concurrent.*;
 
 public class StackForQueue {
 
@@ -64,6 +65,39 @@ public class StackForQueue {
 
 
 class MyStack {
+
+    public static void main(String[] args) {
+        // 创建一个固定大小的线程池，使用 SynchronousQueue 作为任务队列
+        ExecutorService executor = new ThreadPoolExecutor(
+                2, // 核心线程数
+                2, // 最大线程数
+                0L, TimeUnit.MILLISECONDS, // 线程空闲时间
+                new SynchronousQueue<Runnable>() // 使用 SynchronousQueue
+        );
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        ExecutorService executorService1 = Executors.newFixedThreadPool(1);
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
+
+        // 提交10个任务到线程池
+        for (int i = 0; i < 10; i++) {
+            final int taskNumber = i;
+            executor.submit(() -> {
+                System.out.println("Task " + taskNumber + " is running on thread " + Thread.currentThread().getName());
+                try {
+                    // 模拟任务执行时间
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("Task " + taskNumber + " is completed");
+            });
+        }
+
+        // 关闭线程池
+        executor.shutdown();
+    }
     Queue<Integer> queue1 = null;
     Queue<Integer> queue2 = null;
     public MyStack() {
