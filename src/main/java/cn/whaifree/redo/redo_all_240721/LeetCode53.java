@@ -2,6 +2,8 @@ package cn.whaifree.redo.redo_all_240721;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @version 1.0
  * @Author whai文海
@@ -71,5 +73,35 @@ public class LeetCode53 {
             }
             return max;
         }
+    }
+
+    @Test
+    public void test2()
+    {
+        int[] nums = new int[]{-2,1,-3,4,-1,2,1,-5,4};
+        Solution2 solution = new Solution2();
+        System.out.println(solution.maxSubArray(nums));
+    }
+
+    class Solution2 {
+        /**
+         * dp[i] 表述i位置的最大子数组的和
+         * @param nums
+         * @return
+         */
+        public int maxSubArray(int[] nums) {
+            int[] dp = new int[nums.length];
+            dp[0] = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                if (dp[i - 1] > 0 && dp[i - 1] + nums[i] > 0) {
+                    // 不要拖后腿
+                    dp[i] = dp[i - 1] + nums[i];
+                } else {
+                    dp[i] = nums[i];
+                }
+            }
+            return Arrays.stream(dp).max().getAsInt();
+        }
+
     }
 }
