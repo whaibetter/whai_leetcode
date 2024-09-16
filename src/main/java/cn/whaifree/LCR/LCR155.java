@@ -1,4 +1,4 @@
-package cn.whaifree.leetCode.LinkedList;
+package cn.whaifree.LCR;
 
 import org.junit.Test;
 
