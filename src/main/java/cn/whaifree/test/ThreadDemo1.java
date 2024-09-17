@@ -1,14 +1,10 @@
 package cn.whaifree.test;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.lang.reflect.Proxy;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class ThreadDemo1 {
 
@@ -66,6 +62,7 @@ public class ThreadDemo1 {
                     countDownLatch.countDown();
                 }).start();
             }
+
 
             countDownLatch.await();
 
