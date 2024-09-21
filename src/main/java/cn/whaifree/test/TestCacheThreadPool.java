@@ -5,9 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -135,6 +133,7 @@ public class TestCacheThreadPool {
         private String message = "等待消息";
 
         public static void main(String[] args) {
+
             MultiConditionDemo demo = new MultiConditionDemo();
             new Thread(() -> demo.producer()).start();
             new Thread(() -> demo.consumer()).start();
