@@ -1,10 +1,6 @@
 package cn.whaifree.leetCode.Greedy;
 
-import cn.whaifree.leetCode.Tree.LeetCode94;
 import org.junit.Test;
-
-
-import java.net.URL;
 
 /**
  * @version 1.0
@@ -18,8 +14,27 @@ public class LeetCode55 {
     public void test() {
         System.out.println(new Solution().canJump(new int[]{2,0,0}));
 
+        char c = 10 + 90;
+        System.out.println(c);
+        long g = 9999999999L;
+        System.out.println(g);
 
+    }
 
+    public static void main(String[] args) {
+        System.out.println(i());
+
+    }
+
+    public static int i() {
+        try {
+
+            return 1;
+        } catch (Exception e) {
+
+        } finally {
+            return 0;
+        }
     }
 
 
