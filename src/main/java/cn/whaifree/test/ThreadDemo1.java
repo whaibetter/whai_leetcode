@@ -64,7 +64,7 @@ public class ThreadDemo1 {
             }
 
 
-            countDownLatch.await();
+            countDownLatch.await(10, TimeUnit.SECONDS);
 
             new Thread(() -> System.out.println("上面的9个执行完了,轮到我了 wait complete！")).start();
 

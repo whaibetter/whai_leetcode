@@ -3,11 +3,40 @@ package cn.whaifree.designPattern;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.function.BiConsumer;
 
 public class SingletonPattern {
 
+    static class LazySingleton {
+        private static LazySingleton instance;
+
+        private LazySingleton() {
+        }
+
+        public static LazySingleton getInstance() {
+            if (instance == null) {
+                instance = new LazySingleton();
+            }
+            return instance;
+        }
+    }
+
+    static class HungrySingleton {
+        private static final HungrySingleton instance = new HungrySingleton();
+
+        private HungrySingleton() {
+        }
+
+        public static HungrySingleton getInstance() {
+            return instance;
+        }
+    }
+
+
+
+
 }
+
+
 
 
 class Main{
