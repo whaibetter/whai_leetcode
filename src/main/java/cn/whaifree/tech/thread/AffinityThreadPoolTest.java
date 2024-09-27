@@ -22,6 +22,8 @@ public class AffinityThreadPoolTest {
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         long l = System.currentTimeMillis();
 
+
+
         synchronized (o) {
             for (int i = 0; i < 3; i++) {
                 int finalI = i;
