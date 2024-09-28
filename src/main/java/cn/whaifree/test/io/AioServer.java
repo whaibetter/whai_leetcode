@@ -159,11 +159,11 @@ class NioServer {
             selector.select();
             // 遍历所有准备好的通道
             for (SelectionKey key : selector.selectedKeys()) {
-                // 如果是接受事件
+                // 测试此键的通道是否已准备好接受新的 socket 连接。
                 if (key.isAcceptable()) {
                     // 处理接受事件
                     handleAccept(serverSocketChannel, selector);
-                // 如果是读取事件
+                // 如果是可读取事件
                 } else if (key.isReadable()) {
                     // 处理读取事件
                     handleRead(key);
