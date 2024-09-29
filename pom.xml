@@ -7,64 +7,12 @@
 	<groupId>org.example</groupId> <!--groupId表示当前 Maven 项目隶属的组织或公司-->
 	<artifactId>LeetCode</artifactId> <!--当前 Maven 项目的名称-->
 	<version>1.0-SNAPSHOT</version><!--定义了 Maven 项目当前所处版本-->
-	<packaging>jar</packaging> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
-	</properties>
+	<packaging>pom</packaging>
+    <modules>
+        <module>ForJdk8</module>
+		<module>ForJdk17</module>
+	</modules> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
 
-
-	<dependencies>
-
-		<!-- Lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-
-		<!-- JPA API -->
-		<dependency>
-			<groupId>javax.persistence</groupId>
-			<artifactId>javax.persistence-api</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.phantomthief</groupId>
-			<artifactId>simple-pool</artifactId>
-			<version>0.1.17</version>
-		</dependency>
-
-
-		<!--spring-->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>5.3.18</version>
-		</dependency>
-
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>3.3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-http</artifactId>
-			<version>5.8.18</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<plugins>
