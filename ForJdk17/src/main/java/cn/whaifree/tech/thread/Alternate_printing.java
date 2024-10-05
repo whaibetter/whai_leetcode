@@ -16,33 +16,52 @@ import java.util.concurrent.Semaphore;
 public class Alternate_printing {
     public static void main(String[] args) {
 
-        Semaphore s0 = new Semaphore(1);
-        Semaphore s1 = new Semaphore(0);
+        Semaphore s1 = new Semaphore(1); // permits = 1 表示 可以使用acquire对Semaphore的state--，或者使用release对Semaphore的state++
+        Semaphore s2 = new Semaphore(0);
+        Semaphore s3 = new Semaphore(0);
 
-        new Thread(new FutureTask<>(new Callable<>() {
-            @Override
-            public Object call() throws Exception {
-                for (int i = 0; i < 50; i++) {
-                    s0.acquire();
+        Thread threadA = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    s1.acquire(); // 获取信号量
                     System.out.println("a");
-                    s1.release();
+                    s2.release(); // 释放信号量给下一个线程
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("Thread A interrupted.");
                 }
-                return null;
             }
-        })).start();
+        });
 
-
-        new Thread(new FutureTask<>(new Callable<>() {
-            @Override
-            public Object call() throws Exception {
-                for (int i = 0; i < 50; i++) {
-                    s1.acquire();
+        Thread threadB = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    s2.acquire(); // 获取信号量
                     System.out.println("b");
-                    s0.release();
+                    s3.release(); // 释放信号量给下一个线程
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("Thread B interrupted.");
                 }
-                return null;
             }
-        })).start();
+        });
+
+        Thread threadC = new Thread(() -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    s3.acquire(); // 获取信号量
+                    System.out.println("c");
+                    s1.release(); // 释放信号量给第一个线程
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("Thread C interrupted.");
+                }
+            }
+        });
+
+        threadA.start();
+        threadB.start();
+        threadC.start();
     }
 }
 

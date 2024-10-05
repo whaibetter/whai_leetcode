@@ -255,7 +255,7 @@ class AIOServer{
 
             // 读取客户端发送的数据
             ByteBuffer buffer = ByteBuffer.allocate(1024);
-            client.read(buffer, buffer, new CompletionHandler<Integer, ByteBuffer>() {
+            CompletionHandler<Integer, ByteBuffer> handler = new CompletionHandler<>() {
 
                 /**
                  * 当读取操作成功完成时的处理逻辑
@@ -300,7 +300,12 @@ class AIOServer{
                 public void failed(Throwable exc, ByteBuffer attachment) {
                     // 处理读取失败情况，此处未定义具体行为
                 }
-            });
+            };
+
+
+
+
+            client.read(buffer, buffer, handler);
 
             server.accept(null, this);
         }

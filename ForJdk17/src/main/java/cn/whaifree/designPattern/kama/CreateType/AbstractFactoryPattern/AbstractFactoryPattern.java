@@ -1,4 +1,5 @@
-package cn.whaifree.designPattern;
+package cn.whaifree.designPattern.kama.CreateType.AbstractFactoryPattern;
+
 
 public class AbstractFactoryPattern {
 
@@ -60,12 +61,12 @@ class ModernChair implements Chair{
 
 
 
-
 interface AbstractFactory{
     Sofa generateSofa();
     Chair generateChair();
 }
 
+// 现代工厂可以创建多种商品
 class ModernFactory implements AbstractFactory {
 
     @Override
