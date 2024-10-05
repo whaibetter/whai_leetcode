@@ -43,6 +43,5 @@
   - 微信:***whaihalo***
   - ✉️:邮箱:***whaifree@163.com***
 
-<a href= "http://www.whaifree.top">whai的个人博客 whaifree.top 欢迎留言！</a>
 
-<a href="whaifree.top"><img src="http://42.192.130.83:9000/picgo/imgs/image-20230830165044149.png" style="zoom:67%;" /></a>
+<img src="http://42.192.130.83:9000/picgo/imgs/image-20230830165044149.png" style="zoom:67%;" /></a>
