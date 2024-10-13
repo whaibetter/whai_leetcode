@@ -12,6 +12,15 @@ spring:
       port: 6379
       # 选择db1
       database: 3
+  redis:
+    redisson:
+      file: classpath:redisson.yaml
+
+
+  rabbitmq:
+    listener:
+      direct:
+        auto-startup: false
 
 
 # springdoc-openapi项目配置
