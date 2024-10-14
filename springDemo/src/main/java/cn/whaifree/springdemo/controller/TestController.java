@@ -2,6 +2,7 @@ package cn.whaifree.springdemo.controller;
 
 import cn.whaifree.springdemo.aspect.annotation.RateLimiter;
 import cn.whaifree.springdemo.constant.LimitType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ public class TestController {
      */
     @PostMapping("addContainer")
     @RateLimiter(key = "addContainer:", limitType = LimitType.USER, time = 5, count = 1) // 10s只能1次
+    @Transactional(rollbackFor = Exception.class)
     public String addContainerInstanceToCluster(@RequestBody List<String> instances, int userId) {
         // 导入容器节点到集群中
         return addToCluster(instances, "clusterId", userId);

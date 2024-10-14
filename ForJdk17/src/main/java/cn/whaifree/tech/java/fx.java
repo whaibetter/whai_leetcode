@@ -1,5 +1,8 @@
 package cn.whaifree.tech.java;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @version 1.0
  * @Author whai文海
@@ -14,6 +17,9 @@ public class fx {
 
     class User <T extends Base, M,N,O, P> { // ,是并列的关系
 
+        public <T extends User> T test(User<? extends Base, ?, ?, ?, ?> user) {
+            return (T) user;
+        }
 
     }
 
@@ -32,4 +38,23 @@ public class fx {
     public void method() {
         new Book<BookBase>();
     }
+
+
+
+}
+
+class FanXin{
+
+    class RaffleEntity {
+    }
+
+    interface ILogicFilter<T extends RaffleEntity> {
+    }
+
+    public Map<String, ILogicFilter<?>> logicFilterMap = new ConcurrentHashMap<>();
+
+    public <T extends RaffleEntity> Map<String, ILogicFilter<?>> openLogicFilter() {
+        return logicFilterMap;
+    }
+
 }
