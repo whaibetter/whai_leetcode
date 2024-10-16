@@ -37,17 +37,41 @@
             <version>4.4.0</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.redisson</groupId>-->
-<!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
-<!--            <version>3.23.5</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.redisson</groupId>-->
+        <!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
+        <!--            <version>3.23.5</version>-->
+        <!--        </dependency>-->
         <!--redisson-->
         <dependency>
-                <groupId>org.redisson</groupId>
+            <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>3.16.8</version>
+        </dependency>
+        <!-- rabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <!--minio-->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.4.3</version>
+        </dependency>
+        <!-- 其他依赖 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.13.0</version> <!-- 根据实际情况选择最新稳定版本 -->
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
         </dependency>
 
         <!--FastJson-->
@@ -104,11 +128,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.amqp</groupId>-->
-<!--            <artifactId>spring-rabbit-test</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.amqp</groupId>-->
+        <!--            <artifactId>spring-rabbit-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <build>

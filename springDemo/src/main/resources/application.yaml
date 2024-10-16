@@ -16,11 +16,24 @@ spring:
     redisson:
       file: classpath:redisson.yaml
 
-
   rabbitmq:
+    host: localhost
+    port: 5672
+    username: whai
+    password: whai
+    publisher-confirm-type: correlated
+    # 不可达到 返回给生产者
+    # 当启用publisher-returns时，如果发送者发送的消息无法被消费者确认，消息会返回发送者。否则发送者是不知道的
+    template:
+      mandatory: true
+    publisher-returns: true
     listener:
+      simple:
+        acknowledge-mode: manual
       direct:
-        auto-startup: false
+        acknowledge-mode: manual
+
+
 
 
 # springdoc-openapi项目配置
@@ -42,3 +55,10 @@ knife4j:
     language: zh_cn
 server:
   port: 8080
+image:
+  oss:
+    type: minio
+    bucket: picgo
+    ak: wOSfawBbzug2S3qz9u6W
+    sk: CCxIopdXdBRNPloaFV7l8XplKpVLPzjSnMxlKcru
+    endpoint: http://42.192.130.83:9000

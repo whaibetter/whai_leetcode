@@ -22,9 +22,9 @@ public class SelfFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("SelfFilter doFilter");
+//        System.out.println("SelfFilter doFilter");
         filterChain.doFilter(servletRequest, servletResponse);
-        System.out.println("SelfFilter doFilter end");
+//        System.out.println("SelfFilter doFilter end");
     }
 
     @Override
