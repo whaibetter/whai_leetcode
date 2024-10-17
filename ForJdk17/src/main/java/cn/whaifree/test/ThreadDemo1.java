@@ -275,6 +275,37 @@ class mockException{
 
         System.out.println(s);
     }
+
+    private int[][] dir = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}}; // 表示四个方向
+    /**
+     *
+     * @param grid 原地板
+     * @param visited 浏览的点
+     * @param x 起始位置
+     * @param y
+     */
+    public void bfs(char[][] grid, boolean[][] visited, int x, int y) {
+        Queue<int[]> queue = new LinkedList<>(); // 定义队列
+        queue.offer(new int[]{x, y}); // 起始节点加入队列
+        visited[x][y] = true; // 只要加入队列，立刻标记为访问过的节点
+
+        while (!queue.isEmpty()) { // 开始遍历队列里的元素
+            int[] cur = queue.poll(); // 从队列取元素
+            int curx = cur[0];
+            int cury = cur[1]; // 当前节点坐标
+
+            for (int i = 0; i < 4; i++) { // 开始想当前节点的四个方向左右上下去遍历
+                int nextx = curx + dir[i][0];
+                int nexty = cury + dir[i][1]; // 获取周边四个方向的坐标
+                if (nextx < 0 || nextx >= grid.length || nexty < 0 || nexty >= grid[0].length) continue;  // 坐标越界了，直接跳过
+                if (!visited[nextx][nexty]) { // 如果节点没被访问过
+                    queue.offer(new int[]{nextx, nexty});  // 队列添加该节点为下一轮要遍历的节点
+                    visited[nextx][nexty] = true; // 只要加入队列立刻标记，避免重复访问
+                }
+            }
+        }
+    }
+
 }
 
 

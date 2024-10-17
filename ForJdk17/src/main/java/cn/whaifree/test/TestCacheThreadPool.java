@@ -271,4 +271,36 @@ public class TestCacheThreadPool {
 
     }
 
+
+
+}
+class NoFairLock {
+
+    public static void main(String[] args) {
+        // 公平锁和非公平锁的主要区别在于，公平锁会检查是否有线程在等待，有就直接封装成Node，而非公平锁无论如何都会去试一下能不能获取锁；
+        // 公平锁和非公平锁释放的过程是完全一样的，都是通知CLH的后继节点
+        ReentrantLock lock = new ReentrantLock(false);
+        for (int i = 0; i < 15; i++) {
+            int finalI = i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(finalI);
+                        lock.lock();
+                        System.out.println(Thread.currentThread().getName() + " acquired the lock");
+                        // 模拟业务操作
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    } finally {
+                        System.out.println(Thread.currentThread().getName() + " released the lock");
+                        lock.unlock();
+                    }
+
+                }
+            }, "Thread-" + i).start();
+        }
+
+    }
 }
