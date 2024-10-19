@@ -11,8 +11,18 @@
     <modules>
         <module>ForJdk8</module>
 		<module>ForJdk17</module>
-	</modules> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
+        <module>SeleniumDemo</module>
+    </modules> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
 
+	<dependencies>
+		<!--hutool-->
+		<dependency>
+				<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.8.13</version>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
