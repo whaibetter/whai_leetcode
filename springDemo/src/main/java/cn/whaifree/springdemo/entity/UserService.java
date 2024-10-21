@@ -13,7 +13,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 /**
  * @version 1.0
@@ -26,7 +25,7 @@ import org.springframework.stereotype.Component;
 class Config{
 
 }
-@Component("userService")
+//@Component("userService")
 public class UserService implements InitializingBean, DisposableBean, BeanFactoryAware, ApplicationContextAware, BeanPostProcessor,AutoCloseable {
 
     /**
@@ -45,7 +44,6 @@ public class UserService implements InitializingBean, DisposableBean, BeanFactor
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("cn.whaifree.springdemo.entity");
         UserService userService = context.getBean("userService", UserService.class);
         // 执行 DisposableBean
-
 
         context.close();
     }

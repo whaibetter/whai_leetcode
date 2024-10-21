@@ -41,6 +41,14 @@ class Main{
 }
 
 interface Audit{
+    default void def() {
+
+    }
+
+    static void main() {
+
+    }
+
     void process(String name,int day);
 
     public static class Builder{
@@ -68,6 +76,10 @@ interface Audit{
 abstract class AbstractAudit implements  Audit{
     Audit next;
 
+    @Override
+    public void def() {
+        Audit.super.def();
+    }
 }
 
 class Supervisor extends AbstractAudit {

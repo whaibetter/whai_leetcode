@@ -10,7 +10,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * @注释
  */
 public class FunctionInterfaceDemo {
+
     static ReentrantLock lock = new ReentrantLock();
+
+
     public static void main(String[] args) throws InterruptedException {
 
         HashMap<Object, Object> map = new HashMap<>();

@@ -4,8 +4,12 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.geo.*;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
+import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.List;
 
 /**
  * @version 1.0
@@ -77,6 +81,37 @@ public class RedisDataTest {
         // 获取Redis位图中key对应的值的第11个位，检查其是否为true
         System.out.println(redisTemplate.opsForValue().getBit(key, 11));
 
+    }
+
+    @Test
+    public void testGeo() {
+        String key = "geo:user:location";
+
+
+        redisTemplate.opsForGeo().add(key, new Point(116.407396, 39.904200), "beijin");
+        redisTemplate.opsForGeo().add(key, new Point(121.473701, 31.230416), "shanghai");
+        redisTemplate.opsForGeo().add(key, new Point(113.264385, 23.129112), "guangzhou");
+        Distance distance = redisTemplate.opsForGeo().distance(key, "beijin", "shanghai", RedisGeoCommands.DistanceUnit.KILOMETERS); // 计算两个地点之间的距离
+        System.out.println("beijin to shanghai distance: " + distance.getValue() + " " + distance.getUnit());
+
+
+        Point point = new Point(116.404, 39.915);
+        String meMember = "me";
+        redisTemplate.opsForGeo().add(key, point, meMember); // 增加一个点到地理位置信息中
+
+        GeoResults<RedisGeoCommands.GeoLocation<Object>> radius =
+                redisTemplate.opsForGeo().radius(key, new Circle(point, new Distance(2000, RedisGeoCommands.DistanceUnit.KILOMETERS)), // 圆形区域， 半径为1000米
+                RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs().includeCoordinates().sortAscending());
+
+
+        List<GeoResult<RedisGeoCommands.GeoLocation<Object>>> content = radius.getContent();
+        for (GeoResult<RedisGeoCommands.GeoLocation<Object>> geoResult : content) {
+            System.out.println(geoResult.getContent().getName() + " " + geoResult.getContent().getPoint());
+
+            // 计算point 到这些位置的距离
+            Distance dis = redisTemplate.opsForGeo().distance(key, meMember, geoResult.getContent().getName(), RedisGeoCommands.DistanceUnit.KILOMETERS);
+            System.out.println(dis.getValue() + " " + dis.getUnit());
+        }
     }
 
 }

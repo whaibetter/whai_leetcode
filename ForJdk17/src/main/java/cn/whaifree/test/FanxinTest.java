@@ -26,6 +26,14 @@ public class FanxinTest {
     }
     interface  B{
 
+        static void method() {
+
+        }
+
+        default void method2() {
+
+        }
+
     }
     interface C{
 
