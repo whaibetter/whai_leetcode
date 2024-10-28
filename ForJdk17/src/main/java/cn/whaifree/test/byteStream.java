@@ -1,6 +1,8 @@
 package cn.whaifree.test;
 
-import cn.whaifree.leetCode.Hash.LeetCode1;
+
+
+import cn.whaifree.redo.redoAll.LeetCode11;
 
 import java.io.*;
 
@@ -15,24 +17,24 @@ public class byteStream {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream1 = new ObjectOutputStream(out);
-        objectOutputStream1.writeObject(new LeetCode1());
+        objectOutputStream1.writeObject(new LeetCode11());
 
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(out.toByteArray());
         //转为对象
         ObjectInputStream objectInputStream1 = new ObjectInputStream(byteArrayInputStream);
-        LeetCode1 o1 = (LeetCode1)objectInputStream1.readObject();
+        LeetCode11 o1 = (LeetCode11)objectInputStream1.readObject();
         o1.test();
 
 
 
 
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("cc.txt"));
-        LeetCode1 obj = new LeetCode1();
+        LeetCode11 obj = new LeetCode11();
         obj.test();
         objectOutputStream.writeObject(obj);
 
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("cc.txt"));
-        LeetCode1 o = (LeetCode1) objectInputStream.readObject();
+        LeetCode11 o = (LeetCode11) objectInputStream.readObject();
         o.test();
         objectOutputStream.close();
     }
