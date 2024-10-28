@@ -29,7 +29,7 @@ public class FutureRelative {
             FutureTask futureTask = new FutureTask<>(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
-                    Thread.sleep(1000);
+                    Thread.sleep(60 * 1000);
                     return 1;
                 }
             });

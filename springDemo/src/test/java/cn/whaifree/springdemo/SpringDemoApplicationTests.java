@@ -1,5 +1,6 @@
 package cn.whaifree.springdemo;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RedissonClient;
@@ -7,11 +8,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.locks.Lock;
 
 @SpringBootTest
 @Slf4j
 class SpringDemoApplicationTests {
+
+    @Resource(name = "whaiThreadPool")
+    private ThreadPoolExecutor whaiThreadPool;
+    @Test
+    void threadPool() {
+        whaiThreadPool.submit(new Runnable() {
+            @Override
+            public void run() {
+                log.info("hello world");
+            }
+        });
+    }
 
     @Test
     void contextLoads() {

@@ -1,11 +1,17 @@
 
+my:
+  condition: true
+  thread:
+    name: myThread
+    coreSize: 12
+    maxSize: 24
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/springTest?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   data:
     redis:
 
@@ -34,6 +40,15 @@ spring:
       direct:
         acknowledge-mode: manual
 
+mybatis:
+  mapper-locations: '"classpath:/mapper/**.xml"'
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: 1
+      logic-not-delete-value: 0
 
 
 
