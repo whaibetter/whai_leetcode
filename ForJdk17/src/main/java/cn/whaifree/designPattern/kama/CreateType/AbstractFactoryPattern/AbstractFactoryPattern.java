@@ -2,6 +2,11 @@ package cn.whaifree.designPattern.kama.CreateType.AbstractFactoryPattern;
 
 
 public class AbstractFactoryPattern {
+    /**
+     * AbstractFactory--> ModernFactory  --|
+     *                --> ClassicFactory --|-->Sofa OR Chair
+     * @param args
+     */
 
     // https://kamacoder.com/problempage.php?pid=1077
     public static void main(String[] args) {

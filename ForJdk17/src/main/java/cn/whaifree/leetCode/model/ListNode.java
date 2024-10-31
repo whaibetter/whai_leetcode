@@ -44,11 +44,14 @@ public class ListNode {
             System.out.println("null!");
         }
         ListNode curr = head;
+        StringBuilder sb = new StringBuilder();
         while (curr != null) {
-            System.out.print(curr.val + " ");
+            sb.append(curr.val).append("->");
             curr = curr.next;
         }
+        System.out.println(sb);
     }
+
 
     public void printList() {
         printList(this);

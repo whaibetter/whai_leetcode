@@ -1,0 +1,40 @@
+
+spring:
+
+  application:
+    name: ServiceB
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        namespace: 97ff159f-6177-4aab-b735-bd75458949d4
+        group: DEFAULT_GROUP
+        server-addr: localhost:8848
+      config:
+        # ?????????id????????dev?id??????????id??
+        namespace: 97ff159f-6177-4aab-b735-bd75458949d4
+        # ?????????????? ${spring.application.name}
+        # prefix: springboot3-nacos
+        # ??????
+        group: DEFAULT_GROUP
+        # ??????? properties ? yaml ??
+        file-extension: yaml
+        # nacos?????
+        server-addr: localhost:8848
+        # ??????
+        refresh-enabled: true
+        # ????????
+        enable-remote-sync-config: true
+  config:
+    import:
+      - optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+
+# Logger Config
+logging:
+  level:
+    com.hexadecimal: debug
+
+hexadecimal:
+  name: whai
+# --server.port=12139

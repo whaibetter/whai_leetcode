@@ -1,5 +1,7 @@
 package cn.whaifree.leetCode;
 
+import cn.whaifree.leetCode.model.ListNode;
+
 import java.util.ArrayList;
 
 /**
@@ -109,13 +111,13 @@ public class LeetCode002 {
 }
 
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
+//class ListNode {
+//    int val;
+//    ListNode next;
+//    ListNode() {}
+//    ListNode(int val) { this.val = val; }
+//    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+//}
 
 class RefCountGC{
     // 这个成员属性的唯一作用就是占用一点内存
