@@ -22,6 +22,7 @@ public class LeetCode20 {
     }
 
     class Solution {
+
         public boolean isValid(String s) {
 
             Deque<Character> stack = new LinkedList<>();

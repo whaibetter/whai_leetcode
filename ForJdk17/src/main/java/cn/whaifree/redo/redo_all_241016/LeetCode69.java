@@ -9,6 +9,7 @@ import org.junit.Test;
  * @注释
  */
 public class LeetCode69 {
+
     @Test
     public void test() {
         Solution1 solution = new Solution1();

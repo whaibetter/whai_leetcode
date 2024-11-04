@@ -12,6 +12,8 @@
         <module>ForJdk8</module>
 		<module>ForJdk17</module>
         <module>SeleniumDemo</module>
+		<module>SpringCloud</module>
+		<module>SpringDemo</module>
     </modules> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
 
 	<dependencies>
