@@ -33,7 +33,6 @@ public class DynamicThreadPoolController {
     @PostConstruct
     public void init() {
 
-
         executor = new ThreadPoolExecutor(
                 Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors() * 4, 10, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(100),
@@ -68,6 +67,7 @@ class DynamicThreadPoolConfig implements ApplicationListener<EnvironmentChangeEv
 
     @Override
     public void onApplicationEvent(EnvironmentChangeEvent event) {
+        System.out.println("DynamicThreadPoolConfig.onApplicationEvent");
         if (event.getKeys().contains("dynamic.coreSize")) {
             // 获取值
             Integer coreSize = threadConfigProperties.getCoreSize();
