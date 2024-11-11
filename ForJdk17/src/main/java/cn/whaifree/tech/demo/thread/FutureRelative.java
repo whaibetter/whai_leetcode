@@ -17,9 +17,14 @@ public class FutureRelative {
     final static ExecutorService executorService = Executors.newFixedThreadPool(10,
             Executors.defaultThreadFactory());
 
+    final static ExecutorService executorService1 = Executors.newScheduledThreadPool(10);
+
+
+
 
     public static void main(String[] args) {
-        futureTaskDemo();
+
+//        futureTaskDemo();
 
     }
 

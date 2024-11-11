@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.example</groupId> <!--groupId表示当前 Maven 项目隶属的组织或公司-->
+	<groupId>com.whai</groupId> <!--groupId表示当前 Maven 项目隶属的组织或公司-->
 	<artifactId>LeetCode</artifactId> <!--当前 Maven 项目的名称-->
 	<version>1.0-SNAPSHOT</version><!--定义了 Maven 项目当前所处版本-->
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
     <modules>
         <module>ForJdk8</module>
 		<module>ForJdk17</module>
