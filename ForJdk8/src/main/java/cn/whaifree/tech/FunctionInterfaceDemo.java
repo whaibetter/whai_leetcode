@@ -17,7 +17,9 @@ public class FunctionInterfaceDemo {
 
     public static void main(String[] args) throws InterruptedException {
 
-        HashMap<Object, Object> map = new HashMap<>();
+        ConcurrentHashMap<Object, Object> map = new ConcurrentHashMap<>();
+        map.put(null, null);
+//        HashMap<Object, Object> map = new HashMap<>();
 //        map.put(null, null);
         System.out.println(map.get(null));
 

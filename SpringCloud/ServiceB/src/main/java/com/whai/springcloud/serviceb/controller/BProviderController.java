@@ -57,7 +57,7 @@ public class BProviderController {
         }
 
     }
-    @Value("${cvm.reset.ratelimit}")
+    @Value("${cvm.reset.ratelimit:0}")
     private int rateLimitCount;
     private void initRateLimiter() {
         if (rateLimitCount <= 0) {
@@ -70,6 +70,11 @@ public class BProviderController {
     @RequestMapping("/getB")
     public String getB(String msg) {
         return StrUtil.format("BProviderController.getB, msg: {}, port: {}", msg, environment.getProperty("server.port"));
+    }
+
+    @RequestMapping("/getProper")
+    public int getProper() {
+        return environment.getProperty("cvm.reset.ratelimit", Integer.class);
     }
 
 

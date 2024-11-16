@@ -142,6 +142,9 @@ class BioServer {
 
 class NioServer {
     public static void main(String[] args) throws IOException {
+
+
+
         // 打开一个选择器
         Selector selector = Selector.open();
         // 打开一个服务器套接字通道

@@ -53,6 +53,7 @@ public class ThreadDemo1 {
         public static void main(String[] args) throws InterruptedException {
 
             AtomicInteger num = new AtomicInteger(9);
+            num.decrementAndGet();
             CountDownLatch countDownLatch = new CountDownLatch(num.get());
 
             for (int i = 0; i < 9; i++) {

@@ -18,6 +18,4 @@ public interface BService {
     @GetMapping("/getB")
     String getB(@RequestParam("msg") String msg);
 
-
-
 }

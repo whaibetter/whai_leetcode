@@ -60,6 +60,8 @@ class p2{
      * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
      *
      *
+     * 给你一个数组，你可以随意操作任意相邻的元素都+1，请问需要多少次可以让整个数组变成对称的
+     *
      * @param arr int整型一维数组
      * @return long长整型
      */
@@ -80,4 +82,44 @@ class p2{
         int i = dp[0][n - 1];
         return i;
     }
+
+    public static class Solution {
+        public int minOperations(int[] arr) {
+            int n = arr.length;
+
+            // 如果数组长度是奇数，中心元素不参与对称操作
+            int operations = 0;
+
+            // 使用双指针，从两端往中间移动
+            for (int i = 0; i < n / 2; i++) {
+                int left = arr[i];
+                int right = arr[n - i - 1];
+
+                // 计算两个元素的差值
+                int diff = Math.abs(left - right);
+
+                // 如果差值是奇数，不能通过 +1 操作得到相等的数
+                if (diff % 2 != 0) {
+                    return -1;
+                }
+
+                // 每次需要 diff / 2 次操作来平衡这两个元素
+                operations += diff / 2;
+            }
+
+            return operations;
+        }
+
+        public static void main(String[] args) {
+            Solution solution = new Solution();
+
+            // 示例测试
+            int[] arr1 = {1, 2, 2, 1, 1};
+            System.out.println(solution.minOperations(arr1)); // 输出: 0
+
+            int[] arr2 = {1, 2, 3, 4, 5};
+            System.out.println(solution.minOperations(arr2)); // 输出: -1
+        }
+    }
+
 }

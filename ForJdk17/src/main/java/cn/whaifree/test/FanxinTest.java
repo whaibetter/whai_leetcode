@@ -1,6 +1,7 @@
 package cn.whaifree.test;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +18,14 @@ public class FanxinTest {
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>()
         );
+
+        // 异步
+        threadPoolExecutor.submit(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                return null;
+            }
+        });
 
 
     }

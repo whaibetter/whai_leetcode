@@ -64,7 +64,7 @@ public class TestController {
         }
 
         @Override
-        public Object call() throws Exception {
+        public Object call(){
 
             return null;
         }

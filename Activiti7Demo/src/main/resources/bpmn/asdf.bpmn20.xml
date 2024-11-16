@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+    <!-- 流程定义 -->
+    <process id="parallelApprovalProcess" name="Parallel Approval Process" isExecutable="true">
+
+        <!-- 开始事件 -->
+        <startEvent id="startEvent" name="Start"/>
+
+        <!-- 并行网关（分支） -->
+        <parallelGateway id="forkGateway" />
+
+        <!-- 财务审批任务 -->
+        <userTask id="financialApproval" name="Financial Approval" flowable:assignee="financeUser" />
+
+        <!-- 人力资源审批任务 -->
+        <userTask id="hrApproval" name="HR Approval" flowable:assignee="hrUser" />
+
+        <!-- 技术审批任务 -->
+        <userTask id="techApproval" name="Tech Approval" flowable:assignee="techUser" />
+
+        <!-- 并行网关（汇合） -->
+        <parallelGateway id="joinGateway" />
+
+        <!-- 结束事件 -->
+        <endEvent id="endEvent" name="End"/>
+
+        <!-- 连线 -->
+        <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="forkGateway"/>
+        <sequenceFlow id="flow2" sourceRef="forkGateway" targetRef="financialApproval"/>
+        <sequenceFlow id="flow3" sourceRef="forkGateway" targetRef="hrApproval"/>
+        <sequenceFlow id="flow4" sourceRef="forkGateway" targetRef="techApproval"/>
+        <sequenceFlow id="flow5" sourceRef="financialApproval" targetRef="joinGateway"/>
+        <sequenceFlow id="flow6" sourceRef="hrApproval" targetRef="joinGateway"/>
+        <sequenceFlow id="flow7" sourceRef="techApproval" targetRef="joinGateway"/>
+        <sequenceFlow id="flow8" sourceRef="joinGateway" targetRef="endEvent"/>
+    </process>
+
+    <!-- 图形表示部分 -->
+    <bpmndi:BPMNDiagram id="BPMNDiagram_parallelApprovalProcess">
+        <bpmndi:BPMNPlane id="BPMNPlane_parallelApprovalProcess" bpmnElement="parallelApprovalProcess">
+
+            <!-- 开始事件图形 -->
+            <bpmndi:BPMNShape id="startEventShape" bpmnElement="startEvent">
+                <omgdc:Bounds x="100" y="100" width="36" height="36"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 并行网关（分支）图形 -->
+            <bpmndi:BPMNShape id="forkGatewayShape" bpmnElement="forkGateway">
+                <omgdc:Bounds x="200" y="100" width="50" height="50"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 财务审批任务图形 -->
+            <bpmndi:BPMNShape id="financialApprovalShape" bpmnElement="financialApproval">
+                <omgdc:Bounds x="300" y="40" width="80" height="100"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 人力资源审批任务图形 -->
+            <bpmndi:BPMNShape id="hrApprovalShape" bpmnElement="hrApproval">
+                <omgdc:Bounds x="300" y="150" width="80" height="100"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 技术审批任务图形 -->
+            <bpmndi:BPMNShape id="techApprovalShape" bpmnElement="techApproval">
+                <omgdc:Bounds x="300" y="260" width="80" height="100"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 并行网关（汇合）图形 -->
+            <bpmndi:BPMNShape id="joinGatewayShape" bpmnElement="joinGateway">
+                <omgdc:Bounds x="420" y="150" width="50" height="50"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 结束事件图形 -->
+            <bpmndi:BPMNShape id="endEventShape" bpmnElement="endEvent">
+                <omgdc:Bounds x="550" y="160" width="36" height="36"/>
+            </bpmndi:BPMNShape>
+
+            <!-- 连线图形 -->
+            <bpmndi:BPMNEdge id="flow1Edge" bpmnElement="flow1">
+                <omgdi:waypoint x="136" y="118"/>
+                <omgdi:waypoint x="200" y="125"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow2Edge" bpmnElement="flow2">
+                <omgdi:waypoint x="250" y="125"/>
+                <omgdi:waypoint x="300" y="90"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow3Edge" bpmnElement="flow3">
+                <omgdi:waypoint x="250" y="125"/>
+                <omgdi:waypoint x="300" y="200"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow4Edge" bpmnElement="flow4">
+                <omgdi:waypoint x="250" y="125"/>
+                <omgdi:waypoint x="300" y="310"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow5Edge" bpmnElement="flow5">
+                <omgdi:waypoint x="380" y="90"/>
+                <omgdi:waypoint x="420" y="175"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow6Edge" bpmnElement="flow6">
+                <omgdi:waypoint x="380" y="200"/>
+                <omgdi:waypoint x="420" y="175"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow7Edge" bpmnElement="flow7">
+                <omgdi:waypoint x="380" y="310"/>
+                <omgdi:waypoint x="420" y="175"/>
+            </bpmndi:BPMNEdge>
+
+            <bpmndi:BPMNEdge id="flow8Edge" bpmnElement="flow8">
+                <omgdi:waypoint x="470" y="175"/>
+                <omgdi:waypoint x="550" y="178"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,5 +1,6 @@
+
 server:
-  port: 12120
+  port: 12123
 spring:
   application:
     name: ServiceA
@@ -8,20 +9,20 @@ spring:
       username: nacos
       password: nacos
       discovery:
-        namespace: 97ff159f-6177-4aab-b735-bd75458949d4
+        namespace: public
         group: DEFAULT_GROUP
-        server-addr: localhost:8848
+        server-addr: 192.168.50.248:8848
       config:
         # 配置所属命名空间的id，我们配置名称为dev的id，在命名空间列表查看id的值
-        namespace: 97ff159f-6177-4aab-b735-bd75458949d4
+        namespace: public
         # 文件名，如果没有配置则默认为 ${spring.application.name}
-#        prefix: springboot3-nacos
+        #        prefix: springboot3-nacos
         # 配置所属分组
         group: DEFAULT_GROUP
         # 后缀名，只支持 properties 和 yaml 类型
         file-extension: yaml
         # nacos服务器地址
-        server-addr: localhost:8848
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
         # 配置自动刷新
         refresh-enabled: true
   config:
@@ -33,5 +34,3 @@ logging:
   level:
     com.hexadecimal: debug
 
-hexadecimal:
-  name: whai
