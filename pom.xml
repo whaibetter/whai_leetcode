@@ -16,7 +16,29 @@
 		<module>SpringDemo</module>
     </modules> <!--定义了 Maven 项目的打包方式（比如 jar，war...），默认使用 jar。-->
 
+	<!-- 依赖软件版本 -->
+	<properties>
+		<slf4j.version>1.7.30</slf4j.version>
+	</properties>
+
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!--         https://mvnrepository.com/artifact/org.slf4j/slf4j-simple-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+			<!-- 注意，若无type为jar则报错-->
+			<type>jar</type>
+		</dependency>
+
+
 		<!--hutool-->
 		<dependency>
 				<groupId>cn.hutool</groupId>
