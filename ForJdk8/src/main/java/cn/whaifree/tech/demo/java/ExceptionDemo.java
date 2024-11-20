@@ -10,6 +10,12 @@ import org.junit.Test;
  */
 public class ExceptionDemo {
 
+    public static void main(String[] args) {
+        while (true) {
+
+        }
+    }
+
     @Test
     public void testException() {
         try {
@@ -25,6 +31,7 @@ public class ExceptionDemo {
     class CustomRuntimeException extends RuntimeException {
 
     }
+
     public void testRuntimeException() {
         throw new CustomRuntimeException();
     }
@@ -34,9 +41,11 @@ public class ExceptionDemo {
     public void testCustomException() throws CustomCheckException {
         method();
     }
+
     public void method() throws CustomCheckException {
         throw new CustomCheckException("自定义异常");
     }
+
     class CustomCheckException extends Exception {
         public CustomCheckException(String message) {
             super(message);

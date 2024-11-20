@@ -18,6 +18,9 @@ public interface SPIService {
 
 
         ServiceLoader<SPIService> load = ServiceLoader.load(SPIService.class);
+        for (SPIService spiService : load) {
+            System.out.println(spiService);
+        }
         Iterator<SPIService> iterator = load.iterator();
         while (iterator.hasNext()) {
             SPIService next = iterator.next();
