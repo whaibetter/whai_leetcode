@@ -30,6 +30,20 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
         <!--  caffeine 缓存使用姿势   -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
