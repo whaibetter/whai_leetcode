@@ -1,8 +1,8 @@
 package cn.whaifree.test;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import org.junit.Test;
+
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -55,26 +55,34 @@ public class CRC16_ARC {
     public static void attachCRC16ARC(String sourceFilePath, String destinationFilePath) throws IOException {
         // 打开源文件并读取所有内容
         FileInputStream fis = new FileInputStream(sourceFilePath);
-        byte[] data = fis.readAllBytes();
-        fis.close();
+        attachCRC16ARC(fis, new FileOutputStream(destinationFilePath));
+    }
+
+    public static void attachCRC16ARC(InputStream is, OutputStream os) throws IOException {
+        byte[] data = is.readAllBytes();
+        is.close();
 
         // 计算源文件数据的CRC16ARC校验值
         int crcValue = calculateCRC16ARC(data);
+        // 创建输出流，准备写入目标文件
 
         // 打开目标文件，写入源文件数据和CRC校验值
-        FileOutputStream fos = new FileOutputStream(destinationFilePath);
-        fos.write(data);
+        os.write(data);
         // 写入CRC的高字节
-        fos.write((crcValue & 0xFF00) >> 8);
+        os.write((crcValue & 0xFF00) >> 8);
         // 写入CRC的低字节
-        fos.write(crcValue & 0xFF);
-        fos.close();
+        os.write(crcValue & 0xFF);
+        os.close();
     }
 
     public static byte[] generateCRC16ARCForSend(String filePath) throws IOException {
         FileInputStream fis = new FileInputStream(filePath);
-        byte[] data = fis.readAllBytes();
-        fis.close();
+        return generateCRC16ARCForSend(fis);
+    }
+
+     public static byte[] generateCRC16ARCForSend(InputStream is) throws IOException {
+        byte[] data = is.readAllBytes();
+        is.close();
 
         // 计算CRC16ARC校验值
         int crcValue = calculateCRC16ARC(data);
@@ -108,8 +116,12 @@ public class CRC16_ARC {
      */
     public static boolean verifyCRC16ARC(String filePath) throws IOException {
         FileInputStream fis = new FileInputStream(filePath);
-        byte[] data = fis.readAllBytes();
-        fis.close();
+        return verifyCRC16ARC(fis);
+    }
+
+    public static boolean verifyCRC16ARC(InputStream is) throws IOException {
+        byte[] data = is.readAllBytes();
+        is.close();
 
         // 文件附带的CRC
         int fileCRC = ((data[data.length - 2] & 0xFF) << 8) | (data[data.length - 1] & 0xFF);
@@ -120,18 +132,30 @@ public class CRC16_ARC {
         return fileCRC == calculatedCRC;
     }
 
+    @Test
+    public void test12() throws IOException, ClassNotFoundException {
+        byte[] bytes = {0x01, 0x02};
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        attachCRC16ARC(bis, bos);;
 
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        if (verifyCRC16ARC(new ByteArrayInputStream(bos.toByteArray()))) {
+            System.out.println("验证成功");
+        } else {
+            System.out.println("验证失败");
+        }
 
-
+    }
+    @Test
+    public void test1() throws IOException, ClassNotFoundException {
 
         String filePath = "D:\\Downloads\\BFD-D42401883.pdf";
         String destinationFilePath = "D:\\Downloads\\BFD-D42401883-1.pdf"; // 输出的
         attachCRC16ARC(filePath, destinationFilePath);
         if (verifyCRC16ARC(destinationFilePath)) {
             System.out.println("验证成功");
-        }else {
+        } else {
             System.out.println("验证失败");
         }
 
@@ -139,7 +163,7 @@ public class CRC16_ARC {
         byte[] bytes = generateCRC16ARCForSend(filePath); // 生成附带CRC的完整文件
         if (verifyCRC16ARCByBytes(bytes)) { // 验证
             System.out.println("验证成功");
-        }else {
+        } else {
             System.out.println("验证失败");
         }
 
