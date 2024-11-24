@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Data;
 import lombok.Setter;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -17,8 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +32,13 @@ import java.util.List;
  * @Date 2024/11/20 16:35
  * @注释
  */
-@Controller
+@RestController
 @RequestMapping("/workBook")
 public class WorkBookController {
+
+
+
+
     @GetMapping(value = "/exportUser")
     public void export(HttpServletResponse response) throws UnsupportedEncodingException {
         // WorkBook
