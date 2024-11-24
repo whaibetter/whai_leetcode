@@ -30,7 +30,11 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
-
+        <!--security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -44,6 +48,23 @@
             <version>5.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-integration</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-ip</artifactId>
+        </dependency>
+
+        <!--         &lt;!&ndash; openAPI包，替换 Swagger 的 SpringFox &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springdoc</groupId>-->
+        <!--            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+        <!--            <version>2.2.0</version>-->
+        <!--        </dependency>-->
         <!--  caffeine 缓存使用姿势   -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
