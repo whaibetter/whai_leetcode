@@ -19,7 +19,7 @@ import java.util.concurrent.*;
 @RestController
 public class TestController {
     @PostMapping("/test")
-    @RateLimiter(key = "test:", time = 10, count = 1) // 10s只能1次
+    @RateLimiter(key = "test:", time = 10, count = 10) // 10s只能1次
     public String test() {
         return "test";
     }

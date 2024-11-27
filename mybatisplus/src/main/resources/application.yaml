@@ -1,0 +1,73 @@
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.50.248:3306/springTest?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+# dbCount \u5206\u51E0\u4E2A\u5E93\uFF0CtbCount \u5206\u51E0\u4E2A\u8868\uFF0C\u4E24\u4E2A\u6570\u7684\u4E58\u79EF\u4E3A2\u7684\u6B21\u5E42\u3002
+# default \u4E3A\u9ED8\u8BA4\u4E0D\u8D70\u5206\u5E93\u5206\u8868\u65F6\u5019\u8DEF\u7531\u5230\u54EA\u4E2A\u5E93\uFF0C\u8FD9\u91CC\u662F\u6211\u4EEC\u9700\u8981\u7684\u914D\u7F6E\u5E93\u3002
+# routerKey \u9ED8\u8BA4\u8D70\u7684\u8DEF\u7531 Key\uFF0C\u4E00\u4E2A\u6570\u636E\u8DEF\u7531\uFF0C\u662F\u9700\u8981\u6709\u4E00\u4E2A\u952E\u7684\uFF0C\u8FD9\u91CC\u9009\u62E9\u7684\u662F\u7528\u6237ID\u4F5C\u4E3A\u8DEF\u7531\u8BA1\u7B97\u952E\u3002
+# list: db01,db02 \u8868\u793A\u5206\u5E93\u5206\u8868\uFF0C\u8D70\u90A3\u5957\u5E93\u3002
+# db0\u3001db1\u3001db2 \u5C31\u662F\u914D\u7F6E\u7684\u6570\u636E\u5E93\u4FE1\u606F\u4E86\u3002\u8FD9\u91CC\u7ED9\u6BCF\u4E2A\u6570\u636E\u5E93\u90FD\u914D\u7F6E\u4E86\u5BF9\u5E94\u7684\u8FDE\u63A5\u6C60\u4FE1\u606F\u3002
+
+
+# \u591A\u6570\u636E\u6E90\u8DEF\u7531\u914D\u7F6E\uFF0C\u5E93\u6570\u91CF * \u8868\u6570\u91CF \u4E3A2\u7684\u6B21\u5E42\uFF0C\u59822\u5E934\u8868
+# mysql 5.x \u914D\u7F6E driver-class-name: com.mysql.jdbc.Driver    mysql-connector-java 5.1.34
+# mysql 8.x \u914D\u7F6E driver-class-name: com.mysql.cj.jdbc.Driver mysql-connector-java 8.0.22
+mini-db-router:
+  jdbc:
+    datasource:
+      dbCount: 2
+      tbCount: 4
+      default: db00
+      routerKey: id # 默认key，如果@RouterK没有就用这个
+      list: db01,db02
+      db00:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.50.248:3306/springTest?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+        type-class-name: com.zaxxer.hikari.HikariDataSource
+        pool:
+          pool-name: Retail_HikariCP
+          minimum-idle: 15 #\u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570\u91CF
+          idle-timeout: 180000 #\u7A7A\u95F2\u8FDE\u63A5\u5B58\u6D3B\u6700\u5927\u65F6\u95F4\uFF0C\u9ED8\u8BA4600000\uFF0810\u5206\u949F\uFF09
+          maximum-pool-size: 25 #\u8FDE\u63A5\u6C60\u6700\u5927\u8FDE\u63A5\u6570\uFF0C\u9ED8\u8BA4\u662F10
+          auto-commit: true  #\u6B64\u5C5E\u6027\u63A7\u5236\u4ECE\u6C60\u8FD4\u56DE\u7684\u8FDE\u63A5\u7684\u9ED8\u8BA4\u81EA\u52A8\u63D0\u4EA4\u884C\u4E3A,\u9ED8\u8BA4\u503C\uFF1Atrue
+          max-lifetime: 1800000 #\u6B64\u5C5E\u6027\u63A7\u5236\u6C60\u4E2D\u8FDE\u63A5\u7684\u6700\u957F\u751F\u547D\u5468\u671F\uFF0C\u503C0\u8868\u793A\u65E0\u9650\u751F\u547D\u5468\u671F\uFF0C\u9ED8\u8BA41800000\u537330\u5206\u949F
+          connection-timeout: 30000 #\u6570\u636E\u5E93\u8FDE\u63A5\u8D85\u65F6\u65F6\u95F4,\u9ED8\u8BA430\u79D2\uFF0C\u537330000
+          connection-test-query: SELECT 1
+      db01:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.50.248:3306/springTest?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+        type-class-name: com.zaxxer.hikari.HikariDataSource
+        pool:
+          pool-name: Retail_HikariCP
+          minimum-idle: 15 #\u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570\u91CF
+          idle-timeout: 180000 #\u7A7A\u95F2\u8FDE\u63A5\u5B58\u6D3B\u6700\u5927\u65F6\u95F4\uFF0C\u9ED8\u8BA4600000\uFF0810\u5206\u949F\uFF09
+          maximum-pool-size: 25 #\u8FDE\u63A5\u6C60\u6700\u5927\u8FDE\u63A5\u6570\uFF0C\u9ED8\u8BA4\u662F10
+          auto-commit: true  #\u6B64\u5C5E\u6027\u63A7\u5236\u4ECE\u6C60\u8FD4\u56DE\u7684\u8FDE\u63A5\u7684\u9ED8\u8BA4\u81EA\u52A8\u63D0\u4EA4\u884C\u4E3A,\u9ED8\u8BA4\u503C\uFF1Atrue
+          max-lifetime: 1800000 #\u6B64\u5C5E\u6027\u63A7\u5236\u6C60\u4E2D\u8FDE\u63A5\u7684\u6700\u957F\u751F\u547D\u5468\u671F\uFF0C\u503C0\u8868\u793A\u65E0\u9650\u751F\u547D\u5468\u671F\uFF0C\u9ED8\u8BA41800000\u537330\u5206\u949F
+          connection-timeout: 30000 #\u6570\u636E\u5E93\u8FDE\u63A5\u8D85\u65F6\u65F6\u95F4,\u9ED8\u8BA430\u79D2\uFF0C\u537330000
+          connection-test-query: SELECT 1
+      db02:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.50.248:3306/springTest?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+        type-class-name: com.zaxxer.hikari.HikariDataSource
+        pool:
+          pool-name: Retail_HikariCP
+          minimum-idle: 15 #\u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570\u91CF
+          idle-timeout: 180000 #\u7A7A\u95F2\u8FDE\u63A5\u5B58\u6D3B\u6700\u5927\u65F6\u95F4\uFF0C\u9ED8\u8BA4600000\uFF0810\u5206\u949F\uFF09
+          maximum-pool-size: 25 #\u8FDE\u63A5\u6C60\u6700\u5927\u8FDE\u63A5\u6570\uFF0C\u9ED8\u8BA4\u662F10
+          auto-commit: true  #\u6B64\u5C5E\u6027\u63A7\u5236\u4ECE\u6C60\u8FD4\u56DE\u7684\u8FDE\u63A5\u7684\u9ED8\u8BA4\u81EA\u52A8\u63D0\u4EA4\u884C\u4E3A,\u9ED8\u8BA4\u503C\uFF1Atrue
+          max-lifetime: 1800000 #\u6B64\u5C5E\u6027\u63A7\u5236\u6C60\u4E2D\u8FDE\u63A5\u7684\u6700\u957F\u751F\u547D\u5468\u671F\uFF0C\u503C0\u8868\u793A\u65E0\u9650\u751F\u547D\u5468\u671F\uFF0C\u9ED8\u8BA41800000\u537330\u5206\u949F
+          connection-timeout: 30000 #\u6570\u636E\u5E93\u8FDE\u63A5\u8D85\u65F6\u65F6\u95F4,\u9ED8\u8BA430\u79D2\uFF0C\u537330000
+          connection-test-query: SELECT 1

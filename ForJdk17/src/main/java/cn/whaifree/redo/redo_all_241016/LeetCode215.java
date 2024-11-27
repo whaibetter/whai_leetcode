@@ -102,6 +102,12 @@ public class LeetCode215 {
 
         /**
          * 构建大根堆
+         *
+         *  构建每个小子树都是一个大根堆，再以子堆的父节点往上换
+         *
+         *
+         *
+         * 构建大根堆
          * 把根移动到最后
          * 移动k次，顶部就是了
          */
@@ -138,6 +144,7 @@ public class LeetCode215 {
                 if (index != large) {
                     swap(index, large);
                     build(large, rightEdge); // large换完后large已经是小的了，小的下沉到合适的位置
+                    // 大的不断换上去，直到不换就退出
                 }
             }
 

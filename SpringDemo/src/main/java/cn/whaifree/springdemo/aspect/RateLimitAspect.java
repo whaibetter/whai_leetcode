@@ -31,13 +31,11 @@ import java.util.Objects;
 public class RateLimitAspect {
 
     private static final Logger log = LoggerFactory.getLogger(RateLimitAspect.class);
-
     private RedisTemplate<Object, Object> redisTemplate;
-
     private RedisScript<Long> limitScript;
 
     @Autowired
-    public void setRedisTemplate1(RedisTemplate<Object, Object> redisTemplate) {
+    public void setRedisTemplate(RedisTemplate<Object, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -48,10 +46,7 @@ public class RateLimitAspect {
 
     /**
      * key 对应方法，value 已经被访问的次数
-     *
      * lua的逻辑：
-     *
-     *
      *
      * @param point
      * @param rateLimiter
@@ -61,7 +56,6 @@ public class RateLimitAspect {
     public void doBefore(JoinPoint point, RateLimiter rateLimiter) throws Throwable {
         int time = rateLimiter.time();  // 多长时间
         int count = rateLimiter.count(); // 允许次数
-
 
         String combineKey = getCombineKey(rateLimiter, point); // 组合key， Class-Method
         List<Object> keys = Collections.singletonList(combineKey);
@@ -82,6 +76,7 @@ public class RateLimitAspect {
 //        if (rateLimiter.limitType() == LimitType.IP) {
 //            stringBuffer.append(IpUtils.getIpAddr(ServletUtils.getRequest())).append("-");
 //        }
+
         if (rateLimiter.limitType() == LimitType.USER) {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             String username = attributes.getRequest().getParameter("userId");

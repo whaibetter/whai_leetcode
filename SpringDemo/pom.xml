@@ -11,6 +11,7 @@
     <groupId>cn.whaifree</groupId>
     <artifactId>SpringDemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>SpringDemo</name>
     <description>SpringDemo</description>
     <url/>
@@ -30,6 +31,16 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+
+
+
+        <!-- https://mvnrepository.com/artifact/cn.bugstack.middleware/db-router-spring-boot-starter -->
+        <dependency>
+            <groupId>cn.bugstack.middleware</groupId>
+            <artifactId>db-router-spring-boot-starter</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
         <!--security-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -70,30 +81,33 @@
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-            <version>3.5.9</version>
-        </dependency>
+
+
+
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
             <version>4.4.0</version>
         </dependency>
 
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.redisson</groupId>-->
-        <!--            <artifactId>redisson-spring-boot-starter</artifactId>-->
-        <!--            <version>3.23.5</version>-->
-        <!--        </dependency>-->
-        <!--redisson-->
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
         <dependency>
             <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-            <version>3.16.8</version>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.23.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.9</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.redisson</groupId>-->
+<!--            <artifactId>redisson</artifactId>-->
+<!--            <version>3.16.8</version>-->
+<!--        </dependency>-->
         <!-- rabbitMQ-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -125,6 +139,7 @@
             <artifactId>fastjson</artifactId>
             <version>2.0.36</version>
         </dependency>
+
         <!--hutool-->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -192,6 +207,14 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
