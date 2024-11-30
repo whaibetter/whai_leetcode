@@ -1,19 +1,20 @@
 package cn.whai.activiti.activiti7demo;
 
 
-import org.activiti.engine.*;
+import org.activiti.engine.HistoryService;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.activiti.spring.SpringProcessEngineConfiguration;
+import org.activiti.engine.task.TaskQuery;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
@@ -214,6 +215,14 @@ class Activiti7DemoApplicationTests {
 
     @Test
     public void listTasksByAssignee() {
+        TaskQuery query = taskService.createTaskQuery();
+        List<Task> tasks = query.listPage(1, 2);
+
+
+
+
+
+
         /**
          * 查询Admin的代办任务
          */

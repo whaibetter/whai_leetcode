@@ -31,11 +31,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.activiti/activiti-bpmn-model -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-bpmn-model</artifactId>
+            <version>7.1.0.M1</version>
+        </dependency>
+
         <!-- Activiti 7.x依赖 -->
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter</artifactId>
-            <version>7.0.0.GA</version>
+            <version>7.1.0.M1</version>
             <!-- 由于activiti7是使用mybatis作为orm框架，我这里整合mybatis-plus，所以需要排除mybatis -->
             <exclusions>
                 <exclusion>

@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class RateLimitingRequestSplitter {
 
     private int rateLimit;
-    private BlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
+    private final BlockingQueue<String> requestQueue = new LinkedBlockingQueue<>();
 
     public RateLimitingRequestSplitter(int rateLimit) {
         this.rateLimit = rateLimit;

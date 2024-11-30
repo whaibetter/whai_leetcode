@@ -32,7 +32,6 @@ public class DynamicThreadPoolController {
 
     @PostConstruct
     public void init() {
-
         executor = new ThreadPoolExecutor(
                 Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors() * 4, 10, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(100),
