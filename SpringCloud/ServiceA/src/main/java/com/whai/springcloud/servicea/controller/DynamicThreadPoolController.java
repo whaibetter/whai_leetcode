@@ -1,7 +1,7 @@
 package com.whai.springcloud.servicea.controller;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -12,6 +12,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -24,16 +25,26 @@ import java.util.concurrent.TimeUnit;
  * @注释
  */
 @RestController
-public class DynamicThreadPoolController {
+public class DynamicThreadPoolController implements InitializingBean {
 
     static ThreadPoolExecutor executor ;
     @Resource
     private ConfigurableEnvironment environment;
 
-    @PostConstruct
-    public void init() {
+
+    @GetMapping("/dynamicCoreSize")
+    public String dynamicCoreSize() {
+        return "Dynamic Core Size: " + executor.getCorePoolSize();
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Integer corePoolSize = environment.getProperty("dynamic.coreSize", Integer.class);
+        Integer maximumPoolSize = environment.getProperty("dynamic.maxSize", Integer.class);
         executor = new ThreadPoolExecutor(
-                Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors() * 4, 10, TimeUnit.SECONDS,
+                Optional.of(corePoolSize).orElse(5), // 如果corePoolSize为null，则默认为5
+                Optional.of(maximumPoolSize).orElse(10),
+                10, TimeUnit.SECONDS,
                 new ArrayBlockingQueue<>(100),
                 new ThreadFactory() {
                     @Override
@@ -46,13 +57,6 @@ public class DynamicThreadPoolController {
                 new ThreadPoolExecutor.AbortPolicy()
         );
     }
-
-
-    @GetMapping("/dynamicCoreSize")
-    public String dynamicCoreSize() {
-        return "Dynamic Core Size: " + executor.getCorePoolSize();
-    }
-
 }
 
 @Configuration
@@ -74,6 +78,7 @@ class DynamicThreadPoolConfig implements ApplicationListener<EnvironmentChangeEv
             DynamicThreadPoolController.executor.setCorePoolSize(coreSize);
         }
     }
+
 }
 
 @ConfigurationProperties(prefix = "dynamic")
