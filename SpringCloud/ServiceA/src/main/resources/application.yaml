@@ -5,6 +5,7 @@ spring:
   application:
     name: ServiceA
   cloud:
+  
     nacos:
       username: nacos
       password: nacos

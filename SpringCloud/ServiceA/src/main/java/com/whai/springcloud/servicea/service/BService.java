@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @注释
  */
 @Service
-@FeignClient("ServiceB")
+@FeignClient(value = "ServiceB")
 public interface BService {
 
     @GetMapping("/getB")
