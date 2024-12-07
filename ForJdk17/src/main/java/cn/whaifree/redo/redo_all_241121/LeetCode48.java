@@ -3,6 +3,7 @@ package cn.whaifree.redo.redo_all_241121;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @version 1.0
@@ -41,6 +42,9 @@ public class LeetCode48 {
                     matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
                     matrix[j][n - i - 1] = tmp;
                 }
+                AtomicInteger atomicInteger = new AtomicInteger(1);
+                int j = atomicInteger.incrementAndGet();
+
             }
         }
     }

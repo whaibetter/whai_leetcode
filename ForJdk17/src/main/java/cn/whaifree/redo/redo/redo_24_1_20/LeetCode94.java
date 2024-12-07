@@ -1,10 +1,8 @@
 package cn.whaifree.redo.redo.redo_24_1_20;
 
-import cn.whaifree.leetCode.LinkedList.LeetCode142;
 import cn.whaifree.leetCode.model.TreeNode;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,14 +47,15 @@ public class LeetCode94 {
 //                    }
 
                     // 后序 再Reverse
-                    if (pop.left != null) {
-                        stack.push(pop.left);
-                    }
+                    stack.push(pop);
+                    stack.push(null);
                     if (pop.right != null) {
                         stack.push(pop.right);
                     }
-                    stack.push(pop);
-                    stack.push(null);
+                    if (pop.left != null) {
+                        stack.push(pop.left);
+                    }
+
                     // 前序
 //                    if (pop.right != null) {
 //                        stack.push(pop.right);
@@ -71,7 +70,7 @@ public class LeetCode94 {
                     // 前序 中序
 //                    res.add(stack.pop().val);
                     // 后序
-                    res.add(0,stack.pop().val);
+                    res.add(stack.pop().val);
                 }
 
             }

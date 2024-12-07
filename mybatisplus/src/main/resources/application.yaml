@@ -7,6 +7,13 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    local-cache-scope: session # 默认 MyBatis一级缓存
+    # SESSION或者STATEMENT，默认是SESSION级别，即在一个MyBatis会话中执行的所有语句，都会共享这一个缓存。
+    # 一种是STATEMENT级别，可以理解为缓存只对当前执行的这一个Statement有效
+
 
 # dbCount \u5206\u51E0\u4E2A\u5E93\uFF0CtbCount \u5206\u51E0\u4E2A\u8868\uFF0C\u4E24\u4E2A\u6570\u7684\u4E58\u79EF\u4E3A2\u7684\u6B21\u5E42\u3002
 # default \u4E3A\u9ED8\u8BA4\u4E0D\u8D70\u5206\u5E93\u5206\u8868\u65F6\u5019\u8DEF\u7531\u5230\u54EA\u4E2A\u5E93\uFF0C\u8FD9\u91CC\u662F\u6211\u4EEC\u9700\u8981\u7684\u914D\u7F6E\u5E93\u3002

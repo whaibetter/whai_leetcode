@@ -1,15 +1,12 @@
 package com.whai.springcloud.mybatis.mybatisplus.MybatisTest;
 
 
-
-
-import com.whai.springcloud.mybatis.mybatisplus.mybatis.domain.User;
 import com.whai.springcloud.mybatis.mybatisplus.mybatis.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @version 1.0
@@ -20,6 +17,34 @@ import java.util.List;
 @SpringBootTest
 public class MybatisTest {
 
+    public static void main(String[] args) {
+        CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    list.add(i);
+                    list.remove(i);
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println(list.get(i));
+                }
+            }
+        }).start();
+    }
 
 
     @Autowired
@@ -27,13 +52,13 @@ public class MybatisTest {
 
     @Test
     public void testSelect() {
-        User user = new User();
-        user.setId(1L);
-        userMapper.getlist1(1l).forEach(System.out::println);
-        System.out.println(("----- selectAll method test ------"));
-        List<User> userList = userMapper.selectList(null);
-        userList.forEach(System.out::println);
+
+
+
+
+        StringBuilder sql = new StringBuilder();
     }
+
 
 //    @Resource
 //    private OrdersMapper ordersMapper;
