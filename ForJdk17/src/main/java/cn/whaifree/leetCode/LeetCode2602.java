@@ -120,7 +120,7 @@ public class LeetCode2602 {
         }
 
         /**
-         * <img src="http://42.192.130.83:9000/picgo/imgs/1679808210-FVsAou-t3.png">
+         * <img src="http://so9vd9h8j.hd-bkt.clouddn.com/1679808210-FVsAou-t3.png">
          *     </img>
          * @param nums 原数组
          * @param target 目标

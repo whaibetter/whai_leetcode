@@ -49,7 +49,7 @@ public class LeetCode3 {
 
     class Solution1 {
         /**
-         * <img src="http://42.192.130.83:9000/picgo/imgs/image-20240421115141359.png">
+         * <img src="http://so9vd9h8j.hd-bkt.clouddn.com/image-20240421115141359.png">
          * @param s
          * @return
          */

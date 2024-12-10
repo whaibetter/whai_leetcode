@@ -42,7 +42,7 @@ public class LeetCode22 {
         }
 
         /**
-         * <img src="http://42.192.130.83:9000/picgo/imgs/efbe574e5e6addcd1c9dc5c13a50c6f162a2b14a95d6aed2c394e18287a067fa-image.png">
+         * <img src="http://so9vd9h8j.hd-bkt.clouddn.com/efbe574e5e6addcd1c9dc5c13a50c6f162a2b14a95d6aed2c394e18287a067fa-image.png">
          *
          * @param left
          * @param right

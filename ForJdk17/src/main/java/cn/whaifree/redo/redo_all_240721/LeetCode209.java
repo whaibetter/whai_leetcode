@@ -57,7 +57,7 @@ public class LeetCode209 {
      *   0 1 2 3 4 5 横坐标
      * 0 2 5 6 8 12 15 // 面积
      *
-     * <img src="http://42.192.130.83:9000/picgo/imgs/image-20240329122057505.png">
+     * <img src="http://so9vd9h8j.hd-bkt.clouddn.com/image-20240329122057505.png">
      * @param target
      * @param nums
      * @return

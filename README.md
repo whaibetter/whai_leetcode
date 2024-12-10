@@ -44,4 +44,4 @@
   - ✉️:邮箱:***whaifree@163.com***
 
 
-<img src="http://42.192.130.83:9000/picgo/imgs/image-20230830165044149.png" style="zoom:67%;" /></a>
+<img src="http://so9vd9h8j.hd-bkt.clouddn.com/image-20230830165044149.png" style="zoom:67%;" /></a>

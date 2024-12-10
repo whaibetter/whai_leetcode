@@ -41,7 +41,7 @@ public class LeetCode209 {
 
     class Solution2 {
         /**
-         * <img src="http://42.192.130.83:9000/picgo/imgs/image-20240329122057505.png"></img>
+         * <img src="http://so9vd9h8j.hd-bkt.clouddn.com/image-20240329122057505.png"></img>
          * @param target
          * @param nums
          * @return

@@ -21,7 +21,7 @@ public class LeetCode69 {
 
     class Solution {
         /**
-         * <img src="http://42.192.130.83:9000/picgo/imgs/image-20240417112028966.png">
+         * <img src="http://so9vd9h8j.hd-bkt.clouddn.com/image-20240417112028966.png">
          * x^(1/2) = p
          * 1/2 = log x p = ln x / ln p
          * ln p = 2 ln x

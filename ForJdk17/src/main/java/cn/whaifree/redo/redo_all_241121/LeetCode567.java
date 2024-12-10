@@ -3,6 +3,7 @@ package cn.whaifree.redo.redo_all_241121;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,6 +13,8 @@ import java.util.Map;
  * @注释
  */
 public class LeetCode567 {
+
+
     @Test
     public void test() {
         String s1 = "ab";

@@ -80,7 +80,7 @@ BPMN（Business Process Model And Notation），业务流程模型和符号，�
 
 ### Service总览
 
-![img](http://42.192.130.83:9000/picgo/imgs/v2-c33ee3444141b1a2c3b45ef88db771df_1440w.jpg_repeat_1731401329594__239673.png)
+![img](http://so9vd9h8j.hd-bkt.clouddn.com/v2-c33ee3444141b1a2c3b45ef88db771df_1440w.jpg_repeat_1731401329594__239673.png)
 
 - RepositoryService	Activiti的资源管理接口：管理和控制流程发布包和流程定义的操作
 - RuntimeService	Activiti的流程运行管理接口：流程执行相关的信息
@@ -261,11 +261,11 @@ public void getProcessInstance() {
 
 ### 事件 Event
 
-![img](http://42.192.130.83:9000/picgo/imgs/v2-7abf29716c8a87df55a503f537b86230_1440w.jpg_repeat_1731401500483__988588.png)
+![img](http://so9vd9h8j.hd-bkt.clouddn.com/v2-7abf29716c8a87df55a503f537b86230_1440w.jpg_repeat_1731401500483__988588.png)
 
 ### **网关 GateWay**
 
-![img](http://42.192.130.83:9000/picgo/imgs/v2-f27e0ae9d25d13b7b0cc90fceaffd732_1440w.jpg_repeat_1731401505552__805264.png)
+![img](http://so9vd9h8j.hd-bkt.clouddn.com/v2-f27e0ae9d25d13b7b0cc90fceaffd732_1440w.jpg_repeat_1731401505552__805264.png)
 
 - 排他网关：只有一条路径会被选择
 - 并行网关：所有路径都会被选择
@@ -274,6 +274,6 @@ public void getProcessInstance() {
 
 ### 流向 Flow
 
-![img](http://42.192.130.83:9000/picgo/imgs/v2-9f863cc8aa78ed965a8a50349bcd3304_1440w.jpg_repeat_1731401793171__863727.png)
+![img](http://so9vd9h8j.hd-bkt.clouddn.com/v2-9f863cc8aa78ed965a8a50349bcd3304_1440w.jpg_repeat_1731401793171__863727.png)
 
 ## 
